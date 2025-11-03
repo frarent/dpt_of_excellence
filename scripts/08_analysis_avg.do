@@ -1,7 +1,11 @@
-/*==================================================================
-Author: Francesco Rentocchini
-Project Name: Beyond the Badge of Honour: The Effect of the Italian 
-	(Department of) Excellence Initiative on Staff Recruitment 
+/*
+*=============================================================================*
+* Project title: Beyond the Badge of Honour: The Effect of the Italian 
+*	(Department of) Excellence Initiative on Staff Recruitment 
+* Created by: Francesco Rentocchini and Ugo Rizzo
+* Original Date: 21/03/2024
+* Last Update: 11/3/2025
+----------------------------------------------------------------------
 
 Code Description:
 This script prepares and analyzes panel data to evaluate the effect of

@@ -1,9 +1,20 @@
 *=============================================================================*
-* Project title: The effect of DoE on university department hiring
+* Project title: Beyond the Badge of Honour: The Effect of the Italian 
+*	(Department of) Excellence Initiative on Staff Recruitment 
 * Created by: Francesco Rentocchini and Ugo Rizzo
 * Original Date: 21/03/2024
 * Last Update: 11/3/2025
 *=============================================================================*
+
+// Acknowledgments
+*=============================================================================*
+/* 
+This master file builds on that provided by Pietro Santoleri (https://pietrosantoleri.github.io/)
+We are indebted to Pietro for sharing the initial version with us. 
+We have made some modifications to suit our needs and, where possible, to improve upon the already strong starting point. 
+Pietro - Cotton misses you very much. 
+All errors and omissions are our own.
+*/ 
 
 // Clear Memory
 *=============================================================================*

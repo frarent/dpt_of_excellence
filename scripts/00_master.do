@@ -45,13 +45,16 @@ net set ado "stata_packages"
 
 
 // Download packages 
-local packages  blindschemes
+local packages  blindschemes /// plot scheme 
+	reghdfe ftools /// high dimensional fixed effects regressions
+	estout // table exporting tool
+	
 if $downloads == 1 {
 	foreach name of local packages  {
 		ssc install `name',replace 	// Install  Packages
 	}
 
-	*estout cleanplots coefplot psweight reghdfe ftools ppmlhdfe  ///
+	* cleanplots coefplot ppmlhdfe  ///
 	drdid
 	*net install http://www.stata.com/users/vwiggins/grc1leg.pkg
 	*net install sdid, ///

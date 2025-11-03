@@ -1,0 +1,103 @@
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  \\delta\jrc\B\B.6\scidata\users\FR\doe\dpt_of_excellence\logs/2025.11.03-12.21.07.log.txt
+  log type:  text
+ opened on:   3 Nov 2025, 12:21:07
+
+. 
+. di "Begin date and time: $S_DATE $S_TIME"
+Begin date and time:  3 Nov 2025 12:21:07
+
+. di "Stata version: `c(stata_version)'"
+Stata version: 18.5
+
+. di "Updated as of: `c(born_date)'"
+Updated as of: 04 Sep 2024
+
+. di "Variant:       `=cond( c(MP),"MP",cond(c(SE),"SE",c(flavor)) )'"
+Variant:       MP
+
+. di "Processors:    `c(processors)'"
+Processors:    8
+
+. di "OS:            `c(os)' `c(osdtl)'"
+OS:            Windows 64-bit
+
+. di "Machine type:  `c(machine_type)'"
+Machine type:  PC (64-bit x86-64)
+
+. 
+. // Set Date
+. global date = subinstr("$S_DATE", " ", "-", .)
+
+. 
+. // Version of stata
+. version 18
+
+. 
+. // Specify Screen Width for log files
+. set linesize 255
+
+. 
+. // Set Graph Scheme
+. graph set window fontface default
+
+. set scheme plotplainblind
+
+. 
+. // Set table format
+. global tab_fmt html
+
+. 
+. // Allow the screen to move without having to click more
+. set more off
+
+. 
+. // Drop everything in mata
+. matrix drop _all
+
+. 
+. // Run do files
+. *=============================================================================*
+. 
+. // Build data
+. if $build_data == 1 {
+.         do $script_path/07_build_DBs.do
+. }
+
+. 
+. // Run main analysis
+. if $analysis == 1 {
+.         do $script_path/08_analysis_avg.do
+. }
+
+. 
+. // Run robustness checks
+. if $robcheck == 1 {
+.         do $script_path/09_analysis_avg_RC.do
+. }
+
+. 
+. // Run robustness checks
+. if $partial == 1 {
+.         do $script_path/11_partial_effects.do
+. }
+
+. 
+. // Run robustness checks (time consuming one)
+. if $robcheck_long == 1 {
+.         do $script_path/10_analysis_avg_RC_long.do
+. }
+
+. 
+. 
+. * End log
+. di "End date and time: $S_DATE $S_TIME"
+End date and time:  3 Nov 2025 12:21:07
+
+. log close
+      name:  <unnamed>
+       log:  \\delta\jrc\B\B.6\scidata\users\FR\doe\dpt_of_excellence\logs/2025.11.03-12.21.07.log.txt
+  log type:  text
+ closed on:   3 Nov 2025, 12:21:07
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

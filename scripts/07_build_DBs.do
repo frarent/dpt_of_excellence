@@ -13,6 +13,16 @@ Code Description:
 ======================================================================
 */
 
+
+// SET GLOBALS FOR ANALYSIS
+*=============================================================================*
+
+global covar lagi dep_transfer_horizontal tot_premiale VA_percap unemp_rate
+
+// RESIDUAL DATA IMPORT
+*=============================================================================*
+
+
 import delimited "${raw_data_path}/Dati provinciali (IT1,151_914_DF_DCCV_TAXDISOCCU1_8,1.0).csv", bindquote(nobind) clear 
 keep territorio time_period osservazione
 rename territorio provincia

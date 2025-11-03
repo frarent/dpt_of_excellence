@@ -1,7 +1,7 @@
 /*==================================================================
 Author: Francesco Rentocchini
-Current Date: 21 April 2025
-Project Name: Department of Excellence Project
+Project Name: Beyond the Badge of Honour: The Effect of the Italian 
+	(Department of) Excellence Initiative on Staff Recruitment 
 
 Code Description:
 This script prepares and analyzes panel data to evaluate the effect of
@@ -15,9 +15,24 @@ Inputs:
 
 Outputs:
 - db_robcheck.dta: Dataset with pre/post treatment indicator saved.
-- tables_01_DD_avg.[format]: DD regression results tables (Panel A & B).
-- tables_02_DDD_avg.[format]: DDD regression results tables (Panel A & B).
+- tables_01_DD_avg: DD regression results tables (Panel A & B).
+- tables_02_DDD_avg: DDD regression results tables (Panel A & B).
 ==================================================================*/
+
+// SET GLOBALS FOR ANALYSIS
+*=============================================================================*
+
+global covar lagi dep_transfer_horizontal tot_premiale VA_percap unemp_rate
+
+global y new_position new_entry new_endogamia new_rtda new_rtdb new_ten_uni_all	
+
+
+global y1 est*_new_position est*_new_entry est*_new_endogamia
+global y2 est*_new_rtda est*_new_rtdb est*_new_ten_uni_all
+
+global plot_y1 est3_new_position est3_new_entry est3_new_endogamia	
+global plot_y2 est3_new_rtda est3_new_rtdb est3_new_ten_uni_all
+
 
 
 * --------------------------------------------------

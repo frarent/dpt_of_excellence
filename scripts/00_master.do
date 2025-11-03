@@ -1,7 +1,8 @@
 *=============================================================================*
 * Project title: The effect of DoE on university department hiring
-* Created by: Francesco Rentocchini
-* Date: 21/03/2024
+* Created by: Francesco Rentocchini and Ugo Rizzo
+* Original Date: 21/03/2024
+* Last Update: 11/3/2025
 *=============================================================================*
 
 // Clear Memory
@@ -90,22 +91,6 @@ global output "output"
 global log_path "logs" 
 
 
-// SET GLOBALS FOR ANALYSIS
-*=============================================================================*
-
-global covar lagi dep_transfer_horizontal tot_premiale VA_percap unemp_rate
-
-global y new_position new_entry new_endogamia new_rtda new_rtdb new_ten_uni_all	
-
-
-
-global y1 est*_new_position est*_new_entry est*_new_endogamia
-global y2 est*_new_rtda est*_new_rtdb est*_new_ten_uni_all
-
-global plot_y1 est3_new_position est3_new_entry est3_new_endogamia	
-global plot_y2 est3_new_rtda est3_new_rtdb est3_new_ten_uni_all
-
-
 
 // Initialize log and record system parameters
 cap log close
@@ -130,16 +115,12 @@ version 18
 // Specify Screen Width for log files
 set linesize 255
 
-// Set font type
-*graph set window fontface "Roboto"
-
 // Set Graph Scheme
 graph set window fontface default
 set scheme plotplainblind
 
 // Set table format
 global tab_fmt html
-*rtf html tex
 
 // Allow the screen to move without having to click more
 set more off

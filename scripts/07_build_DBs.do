@@ -1,8 +1,8 @@
 /*
 ======================================================================
 Author: Francesco Rentocchini  
-Current Date: 21 April 2025  
-Project Name: Department of Excellence Paper  
+Project Name: Beyond the Badge of Honour: The Effect of the Italian 
+	(Department of) Excellence Initiative on Staff Recruitment 
 ----------------------------------------------------------------------
 Code Description:
 - This script prepares panel data for estimation in the Department of

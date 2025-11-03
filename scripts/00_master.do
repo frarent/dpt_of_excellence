@@ -13,7 +13,7 @@ clear all
 *=============================================================================*
 
 // Download raw data (0 for no; 1 for yes)
-global downloads 0
+global downloads 1
 
 // Build dataset used in analysis (0 for no; 1 for yes)
 global build_data 0
@@ -45,14 +45,16 @@ net set ado "stata_packages"
 
 
 // Download packages 
-local packages estout cleanplots coefplot psweight reghdfe ftools ppmlhdfe  ///
-	drdid blindschemes
+local packages  blindschemes
 if $downloads == 1 {
 	foreach name of local packages  {
 		ssc install `name',replace 	// Install  Packages
 	}
-	net install http://www.stata.com/users/vwiggins/grc1leg.pkg
-	net install sdid, ///
+
+	*estout cleanplots coefplot psweight reghdfe ftools ppmlhdfe  ///
+	drdid
+	*net install http://www.stata.com/users/vwiggins/grc1leg.pkg
+	*net install sdid, ///
 		from("https://raw.githubusercontent.com/daniel-pailanir/sdid/master") replace
 }
 

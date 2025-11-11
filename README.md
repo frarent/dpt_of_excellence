@@ -23,7 +23,7 @@ We started from a list of 352 departments. We excluded a total of 62 departments
   - The department was created after 2013.  
   - The department experienced significant personnel transfers—either incoming or outgoing—with a transfer rate exceeding 20% of the department’s size in a single year, which signals a merger or split.  
   - University-level data were unavailable (specifically, the Ministry does not provide information on the public income of the University of Trento).  
-- We obtained a balanced panel comprising 290 departments, observed from 2013 to 2020.
+Our final dataset is a balanced panel comprising 290 departments, observed from 2013 to 2020.
 
 
 

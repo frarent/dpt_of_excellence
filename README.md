@@ -3,7 +3,7 @@ Replication package for the paper "Beyond the Badge of Honour: The Effect of the
 
 Authors: Ugo Rizzo, Francesco Rentocchini, Marco Seeber, Laura Ramaciotti
 
-# Data 
+## Data 
 
 **Data availability:**  
 The data used in this paper is publicly available.

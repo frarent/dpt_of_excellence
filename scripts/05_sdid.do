@@ -45,16 +45,6 @@ bysort id: egen flag_miss2 = total(flag_miss)
 drop if flag_miss2 == 1
 drop flag_miss*
 
-
-* Label outcomes
-label var new_position "# of new positions"
-label var new_entry "# of new positions (excl. promotions)"
-label var new_rtda "# of new temporary positions"
-label var new_rtdb "# of new tenure track positions"
-label var new_ten_uni_all "# of new tenured positions"
-label var new_endogamia "# of internal promotions"
-
-
 * Estimate SDID and generate graphs
 foreach var of global y {
 
@@ -92,7 +82,7 @@ grc1leg "${temp_path}/gr_new_position.gph" ///
     cols(2) imargin(1 1 1) xcommon ///
     legendfrom("${temp_path}/gr_new_position.gph") ///
     ring(1) position(6) ///
-    note("Notes. Synthetic Difference-in-Difference estimator (Arkhangelsky et al., 2021). Include controls for the number of employees at t-1, the number of staff that transferred from one department to another, the public funding received from other sources and VA_percap. Standard errors are based on 1000 bootstrap replications.", span size(.15cm))
+    note("Synthetic Difference-in-Difference estimator (Arkhangelsky et al., 2021). Estimates include controls for the number of employees at t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Lambda weights are shown in grey and are defined as optimized time weights assigned to control units to construct the synthetic control that minimize the differences with the treated unit during the pre-treatment period. Standard errors are based on 1000 bootstrap replications. ", span size(.15cm))
 
 graph export "${output}/g03_RC06_DD_sdid1.png", replace width(10000)
 
@@ -104,7 +94,7 @@ grc1leg "${temp_path}/gr_new_rtda.gph" ///
     cols(2) imargin(1 1 1) xcommon ///
     legendfrom("${temp_path}/gr_new_rtda.gph") ///
     ring(1) position(6) ///
-    note("Notes. Synthetic Difference-in-Difference estimator (Arkhangelsky et al., 2021). Include controls for the number of employees at t-1, the number of staff that transferred from one department to another, the public funding received from other sources and VA_percap. Standard errors are based on 1000 bootstrap replications.", span size(.15cm))
+    note("Synthetic Difference-in-Difference estimator (Arkhangelsky et al., 2021). Estimates include controls for the number of employees at t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Lambda weights are shown in grey and are defined as optimized time weights assigned to control units to construct the synthetic control that minimize the differences with the treated unit during the pre-treatment period. Standard errors are based on 1000 bootstrap replications. ", span size(.15cm))
 
 graph export "${output}/g04_RC06_DD_sdid2.png", replace width(10000)
 
@@ -120,7 +110,7 @@ grc1leg "${temp_path}/gr_new_position.gph" ///
     legendfrom("${temp_path}/gr_new_position.gph") ///
     ring(1) position(6)
 
-graph export "${output}/g04_RC06_DD_sdid_joint.png", replace width(10000)
+graph export "${output}/04_Sdid_Figure_1.png", replace width(10000)
 
 
 * --------------------------------------------------
@@ -130,26 +120,20 @@ graph export "${output}/g04_RC06_DD_sdid_joint.png", replace width(10000)
 use "${data_path}/db_robcheck.dta", clear
 
 
-* Treatment begins in 2018
+
+* Generate treatment indicator from 2018 onward
 gen treat_from2018 = treated
 replace treat_from2018 = 0 if treated == 1 & year < 2018
 
+* Keep relevant years and variables
 keep id year treat_from2018 $y $covar LOWdep
 keep if year > 2013
 
+* Drop unbalanced panels due to missing vars
 egen flag_miss = rowmiss($y $covar treat_from2018 LOWdep)
 bysort id: egen flag_miss2 = total(flag_miss)
 drop if flag_miss2 == 1
 drop flag_miss*
-
-
-* Label outcome variables
-label var new_position "# of new positions"
-label var new_entry "# of new positions (excl. promotions)"
-label var new_rtda "# of new temporary positions"
-label var new_rtdb "# of new tenure track positions"
-label var new_ten_uni_all "# of new tenured positions"
-label var new_endogamia "# of internal promotions"
 
 
 
@@ -197,6 +181,6 @@ matrix A = A[., 1..6]
 
 * Export summary table
 esttab matrix(A, fmt(3 3 3)) using ///
-    "$output/table_RC06_DDD_sdid.${tab_fmt}", ///
+    "$output/05_SDID_Table_9.${tab_fmt}", ///
     replace unstack align(center) nomtitles se ///
     note("SE are bootstraped 1000 reps")

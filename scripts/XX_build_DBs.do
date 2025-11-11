@@ -204,6 +204,29 @@ cap drop y_flag ipw temp yhat
 
 drop post2
 
+* --------------------------------------------------
+* Labels
+* --------------------------------------------------
+
+label var new_position "New positions"
+label var new_entry "New positions (excl. promotions)"
+label var new_endogamia "Internal promotions"
+
+label var new_rtda "Temporary"
+label var new_rtdb "Tenure track"
+label var new_ten_uni_all "Tenured"
+
+label var new_ten_uni_intern "# of new tenured internal"	
+label var new_ten_uni_ext "# of new tenured external"
+label var new_power "# of internal promotions to full prof"
+
+label var lagi "# researchers -1"
+label var dep_transfer_horizontal "# of transfers" 
+label var tot_premiale "amount of research funding"
+label var VA_percap "value added per capita"
+label var unemp_rate "unemployment rate"
+
+
 
 * sanity check
 quietly summarize treated, meanonly

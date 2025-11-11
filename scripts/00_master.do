@@ -58,18 +58,22 @@ net set ado "stata_packages"
 // Download packages 
 local packages  blindschemes /// plot scheme 
 	reghdfe ftools /// high dimensional fixed effects regressions
-	estout // table exporting tool
+	estout /// table exporting tool
+	distinct // num unique observations
 	
 if $downloads == 1 {
 	foreach name of local packages  {
 		ssc install `name',replace 	// Install  Packages
+		
+
 	}
 
+	net install sdid, ///
+		from("https://raw.githubusercontent.com/daniel-pailanir/sdid/master") replace
 	* cleanplots coefplot ppmlhdfe  ///
 	drdid
 	*net install http://www.stata.com/users/vwiggins/grc1leg.pkg
-	*net install sdid, ///
-		from("https://raw.githubusercontent.com/daniel-pailanir/sdid/master") replace
+
 }
 
 
@@ -89,9 +93,6 @@ cap mkdir "output"
 * directory for logs
 cap mkdir "logs"
 
-* directory for auxiliary scripts
-cap mkdir "scripts/auxiliary"
-
 
 // Set your file paths, These are relative to where the project file is saved. 
 *=============================================================================*
@@ -101,7 +102,6 @@ global raw_data_path "data/raw_data"
 global temp_path "temp" 
 
 global script_path "scripts" 
-global aux_path "scripts/auxiliary" 
 
 global output "output" 
 global log_path "logs" 

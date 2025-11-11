@@ -216,3 +216,29 @@ assert abs(r(mean) - 0.5103448) < 1e-6
 
 compress
 save "${data_path}/db_before_est.dta", replace
+
+
+* --------------------------------------------------
+* Database for Robustness Checks
+* --------------------------------------------------
+
+use "${data_path}/db_before_est.dta", clear
+
+cap est drop _all
+
+* Create post-treatment indicator for 2018–2020
+gen post2 = 1 if year >= 2018 & year <= 2020
+replace post2 = 0 if year >= 2014 & year <= 2017
+
+// this definition yields same results
+* gen post3 = 1 if year >= 2018 & year <= 2020
+* replace post3 = 0 if year >= 2013 & year <= 2017
+
+keep id year ///
+	new_position new_entry new_endogamia new_rtda new_rtdb new_ten_uni_all ///
+	treated post2  LOWdep ///
+	lagi dep_transfer_horizontal tot_premiale VA_percap unemp_rate ///
+	w_ipw_pre uni_name_enc
+
+compress
+save "${data_path}/db_robcheck.dta", replace

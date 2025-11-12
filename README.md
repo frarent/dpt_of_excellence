@@ -80,4 +80,4 @@ This will set up the environment and execute all other scripts to reproduce the 
 ### Variable Codebook
 
 ## License
-![CC-BY-NC](data/raw_data/cc-by-nc.png) The README is under a CC-BY-NC license. Usage by commercial entities is allowed, but reselling it is not.
+![CC-BY-NC](data/raw_data/cc-by-nc.png) The repository is under a CC-BY-NC license. Usage by commercial entities is allowed, but reselling it is not.

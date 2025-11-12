@@ -43,12 +43,21 @@ The final dataset, named `xxx.dta`, serves as the starting point for replicating
 
 ## Code for Analysis and Tables/Figures
 
-Code for analysis and table generation is provided as part of the replication package. 
+## Code
 
-In the table below, a description of all the do files and folders in the replication package is provided. Files are organised in the order in which they should be run.
+Code for analysis and table generation is provided as part of the replication package.
 
+The table below describes all `.do` files included in this repository, in the order they should be run.
 
-XXX
+| Name of file | Type | Description | Tables / Figures generated |
+|---|---|---|---|
+| `00_Main.do` | main / setup | Sets Stata version, defines globals/paths, checks or installs required user-written packages (if requested), creates output/log folders, and calls all other scripts in sequence. | — (orchestrates full run) |
+| `01_Descriptives_Table_1.do` | analysis — descriptives | Builds the analysis sample and produces summary statistics and diagnostic checks used in the paper. | **Table 1** (Descriptive statistics) |
+| `02_Estimates_Tables_2to5.do` | analysis — main results | Estimates baseline specifications (e.g., FE/DID with covariates) and formats outputs. | **Tables 2–5** (Main regressions) |
+| `03_GroupEff_Table_6.do` | analysis — heterogeneity | Computes group/contrast effects and other heterogeneity analyses; exports formatted output. | **Table 6** (Group effects) |
+| `04_RobCheck_PT_Tables_7to8.do` | analysis — robustness / placebo | Runs robustness and placebo checks (alternative samples/definitions/timing). | **Tables 7–8** (Robustness & placebo) |
+| `05_Sdid_Table_9_Fig_1.do` | analysis — SDID / event study | Implements synthetic DiD and event-study style diagnostics; exports a figure and a final table. | **Table 9**; **Figure 1** |
+
 
 ### Replication Instructions
 Download the entire zipped folder and open the Stata project `XXX.stpr`. All the scripts will appear in the project manager:

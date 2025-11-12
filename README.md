@@ -87,7 +87,7 @@ This will set up the environment and execute all other scripts to reproduce the 
 | `temp/` | Temporary files created during execution; these are cleaned up automatically at the end of the run. |
 
 ### Variable Codebook
-The full variable codebook with variable name, label, storage type and their corresponding values and value labels is available [here](data/data_for_analysis/codebook.xlsx)
+The full variable codebook with variable name, label, storage type and their corresponding values and value labels is available [here](data/raw_data/codebook.xlsx)
 
 ## License
 ![CC-BY-NC](data/raw_data/cc-by-nc.png) The repository is under a CC-BY-NC license. Usage by commercial entities is allowed, but reselling it is not.

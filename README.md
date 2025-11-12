@@ -1,7 +1,7 @@
 # Beyond the Badge of Honour: The Effect of the Italian (Department of) Excellence Initiative on Staff Recruitment
 Replication package for the paper "Beyond the Badge of Honour: The Effect of the Italian (Department of) Excellence Initiative on Staff Recruitment" published on _Oxford Economic Papers_
 
-Authors: Ugo Rizzo, Francesco Rentocchini, Marco Seeber, Laura Ramaciotti
+Authors: [Ugo Rizzo](https://docente.unife.it/docenti-en/ugo.rizzo?set_language=en), [Francesco Rentocchini](https://frarent.github.io/), [Marco Seeber](https://www.uia.no/english/about-uia/employees/marcos/index.html), [Laura Ramaciotti](https://docente.unife.it/docenti-en/laura.ramaciotti?set_language=en)
 
 ## Data 
 

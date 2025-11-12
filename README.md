@@ -76,7 +76,6 @@ This will set up the environment and execute all other scripts to reproduce the 
 - The package was run on: 1) Windows 64-bit, PC (64-bit x86-64) with 8 processors and lasted XXX; 2) XXX 
 
 ### Directory Structure
-### Directory structure
 
 | Directory | Content |
 |---|---|

@@ -40,7 +40,7 @@ We started from a list of 352 departments. We excluded a total of 62 departments
 
 Our final dataset is a balanced panel comprising 290 departments, observed from 2013 to 2020. 
 
-The final dataset, named `xxx.dta`, serves as the starting point for replicating the analyses and tables presented below.
+The final dataset, named `data/data_for_analysis/data_for_analysis.dta`, serves as the starting point for replicating the analyses and tables presented below.
 
 
 
@@ -72,8 +72,10 @@ This will set up the environment and execute all other scripts to reproduce the 
 
 #### Computational Requirements
 - Software requirements: Stata MP (the code was last run with version 19.5).
-- There is no need to download the user-written packages as they are already contained in `stata_packages`. It suffices to run `scripts/00_main.do` to get the estimates. As several of these user-written packages have been developed recently, it is worth checking for updates by changing `global downloads 0` into `global downloads 1` in `scripts/00_main.do`. This will automatically update all packages.
+- There is no need to download the user-written packages, as they are already included in `stata_packages`. Running `scripts/00_main.do` is sufficient to generate the estimates. Since several of these user-written packages have been developed recently, it is advisable to check for updates by changing `global downloads 0` to `global downloads 1` in `scripts/00_main.do`. This will automatically update all packages.
 - The package was run on: 1) Windows 64-bit, PC (64-bit x86-64) with 8 processors and lasted XXX; 2) XXX 
+
+### Directory Structure
 
 ### Variable Codebook
 

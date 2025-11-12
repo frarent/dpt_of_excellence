@@ -2,18 +2,9 @@
 * Project title: Beyond the Badge of Honour: The Effect of the Italian 
 *	(Department of) Excellence Initiative on Staff Recruitment 
 * Created by: Francesco Rentocchini and Ugo Rizzo
-* Last Update: 11/3/2025
+* Last Update: 12/11/2025
 *=============================================================================*
 
-// Acknowledgments
-*=============================================================================*
-/* 
-This master file builds on that provided by Pietro Santoleri (https://pietrosantoleri.github.io/)
-We are indebted to Pietro for sharing the initial version with us. 
-We have made some modifications to suit our needs and, where possible, to improve upon the already strong starting point. 
-Pietro - Cotton misses you very much. 
-All errors and omissions are our own.
-*/ 
 
 // Clear Memory
 *=============================================================================*
@@ -23,7 +14,7 @@ clear all
 *=============================================================================*
 
 // Download raw data (0 for no; 1 for yes)
-global downloads 1
+global downloads 0
 
 // Run main analysis script (0 for no; 1 for yes)
 global analysis 1
@@ -159,7 +150,7 @@ if $robcheck_long == 1 {
 
 
 // once dataset is ready, this saves name, label, storage type of all the variables in the existing dataset in memory to Excel
-codebookout $data_path/codebook.xls, replace 
+codebookout "$data_path/codebook.xlsx", replace 
 
 * End log
 di "End date and time: $S_DATE $S_TIME"

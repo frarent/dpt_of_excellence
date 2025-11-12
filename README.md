@@ -60,11 +60,12 @@ The table below describes all `.do` files included in this repository, in the or
 
 
 ### Replication Instructions
-Download the entire zipped folder and open the Stata project `XXX.stpr`. All the scripts will appear in the project manager:
 
-- `scripts/00.main.do`: sets up the environment and calls the other scripts to run the estimates and create tables and graphs. 
+1. **Download/clone/unzip** this repository/file.
+2. **Open the Stata Project file** `dpt_of_excellence.stpr`. This will allow you to view all scripts in the Project Manager.
+3. **Run the main script** from Stata: `00_main.do`
 
-- `scripts/01.XXX.do`: contains XXX.
+This will set up the environment and execute all other scripts to reproduce the complete set of tables and figures.
 
 #### Computational Requirements
 - Software requirements: Stata MP (the code was last run with version 19.5).

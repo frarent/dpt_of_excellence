@@ -76,6 +76,16 @@ This will set up the environment and execute all other scripts to reproduce the 
 - The package was run on: 1) Windows 64-bit, PC (64-bit x86-64) with 8 processors and lasted XXX; 2) XXX 
 
 ### Directory Structure
+### Directory structure
+
+| Directory | Content |
+|---|---|
+| `scripts/` | All Stata `.do` files. This folder opens automatically when you load the Stata Project `dpt_of_excellence.stpr`. |
+| `data/` | Initial dataset(s) required to run the analysis. |
+| `output/` | All output produced by the replication run: formatted tables and figures. |
+| `stata_packages/` | Frozen copies of all user-written Stata packages needed to replicate the analysis. |
+| `logs/` | Log of the most recent replication run; a new run-specific log is added for each launch. |
+| `temp/` | Temporary files created during execution; these are cleaned up automatically at the end of the run. |
 
 ### Variable Codebook
 

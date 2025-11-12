@@ -43,9 +43,9 @@ The final dataset, named `xxx.dta`, serves as the starting point for replicating
 
 ## Code
 
-Code for analysis and table generation is provided as part of the replication package. Software requirements: Stata (the code was last run with version 19).
+Code for analysis and table generation is provided as part of the replication package. 
 
-In the table below a description of all the do files and folders in the replication package is provided. Files are organised in the order in which they should be run.
+In the table below, a description of all the do files and folders in the replication package is provided. Files are organised in the order in which they should be run.
 
 
 XXX
@@ -53,10 +53,18 @@ XXX
 ### Replication Instructions
 Download the entire zipped folder and open the Stata project `XXX.stpr`. All the scripts will appear in the project manager:
 
-- `scripts/00.master.do`: sets up the environment and calls the other scripts to run the estimates and create tables and graphs. There is no need to adjust paths, nor downloading the user-written packages as they are already contained in `stata_packages`. It suffices to run `scripts/00_master.do` to get the estimates.
+- `scripts/00.main.do`: sets up the environment and calls the other scripts to run the estimates and create tables and graphs. 
 
 - `scripts/01.XXX.do`: contains XXX.
 
-As several of these user-written packages have been developed recently, it is worth checking for updates by changing `global downloads 0` into `global downloads 1` in `scripts/00_master.do`. This will automatically update all packages.
+#### Computational Requirements
+- Software requirements: Stata MP (the code was last run with version 19.5).
+- There is no need to download the user-written packages as they are already contained in `stata_packages`. It suffices to run `scripts/00_main.do` to get the estimates. As several of these user-written packages have been developed recently, it is worth checking for updates by changing `global downloads 0` into `global downloads 1` in `scripts/00_main.do`. This will automatically update all packages.
+- The package was run on: 1) OS, CPU, memory and disk space 
+- The wall-clock time given the provided computer hardware, expressed in appropriate units (minutes, days).
+
 
 ### Variable Codebook
+
+## License
+![CC-BY-NC](data/raw_data/cc-by-nc.png) The README is under a CC-BY-NC license. Usage by commercial entities is allowed, reselling it is not.

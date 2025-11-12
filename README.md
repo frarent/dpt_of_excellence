@@ -14,6 +14,9 @@ Francesco Rentocchini is an employee of the European Commission. The views expre
 
 **Joint responsibility**. All of the authors take full joint responsibility for any omissions or errors in this replication repository.
 
+The `00_main.do` file builds on that provided by [Pietro Santoleri](https://pietrosantoleri.github.io/). We are indebted to Pietro for sharing the initial version with us. We have made some modifications to suit our needs and, where possible, to improve upon the already strong starting point. 
+Pietro - Cotton misses you very much. All errors and omissions are our own.
+
 ## Data 
 
 ### Data availability  

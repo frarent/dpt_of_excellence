@@ -73,9 +73,7 @@ This will set up the environment and execute all other scripts to reproduce the 
 #### Computational Requirements
 - Software requirements: Stata MP (the code was last run with version 19.5).
 - There is no need to download the user-written packages as they are already contained in `stata_packages`. It suffices to run `scripts/00_main.do` to get the estimates. As several of these user-written packages have been developed recently, it is worth checking for updates by changing `global downloads 0` into `global downloads 1` in `scripts/00_main.do`. This will automatically update all packages.
-- The package was run on: 1) OS, CPU, memory and disk space 
-- The wall-clock time given the provided computer hardware, expressed in appropriate units (minutes, days).
-
+- The package was run on: 1) Windows 64-bit, PC (64-bit x86-64) with 8 processors and lasted XXX; 2) XXX 
 
 ### Variable Codebook
 

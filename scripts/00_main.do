@@ -150,7 +150,7 @@ if $robcheck_long == 1 {
 
 
 // once dataset is ready, this saves name, label, storage type of all the variables in the existing dataset in memory to Excel
-codebookout "$data_path/codebook.xlsx", replace 
+codebookout "$raw_data_path/codebook.xlsx", replace 
 
 * End log
 di "End date and time: $S_DATE $S_TIME"

@@ -5,10 +5,10 @@ Authors: Ugo Rizzo, Francesco Rentocchini, Marco Seeber, Laura Ramaciotti
 
 ## Data 
 
-**Data availability:**  
-The data used in this paper is publicly available.
+### Data availability  
+This study draws on publicly available data from multiple sources. Researchers wishing to replicate the analysis should download and process the data in accordance with the instructions provided below. The authors are available to provide support for reasonable replication efforts related to the data download and cleaning procedures for a period of two years following publication.
 
-**Datasets:**  
+### Datasets  
 | Datasets                   | Description                                                                                     | Public? | Source                                                                                                                                                                                                                                                                                                      | Notes                                                                                                                                                                                                                                                                |
 |-----------------------------|-------------------------------------------------------------------------------------------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Departments of excellence   | Names and characteristics of competing and awarded departments                                  | Yes      | Paper source accessed on Marrch 2023 and now not accessible: [MIUR – Dipartimenti di Eccellenza](https://www.miur.gov.it/dipartimenti-di-eccellenza) | A new website provide the data at November 2025: [DoE](https://www.mur.gov.it/it/aree-tematiche/universita/programmazione-e-finanziamenti/dipartimenti-di-eccellenza/DdE2018-2022).                                                                                                                           |
@@ -16,15 +16,17 @@ The data used in this paper is publicly available.
 | University (research) income | Amount of funding received by universities from the quota allocated based on research performance | Yes      | [MUR – Finanziamenti Università](https://www.mur.gov.it/it/aree-tematiche/universita/programmazione-e-finanziamenti/finanziamenti)                                                                                                                                                                          | For each year of data we downloaded the relative *decreto ministeriale* reporting resources allocation from the Ministry of University and Research website.                                                                                                                        |
 | Province-level data         | Information on per capita value added and the unemployment rate                                 | Yes      | [ISTAT – Data Browser](https://esploradati.istat.it/databrowser/#/en)                                                                                                                                                                                                                                       |                                                                                                                                                                                                                                                                      |
 
-**Data cleaning:**  
+### Data cleaning  
 We started from a list of 352 departments. We excluded a total of 62 departments for the following reasons:  
   - The department belongs to a special school (*Sant’Anna Pisa, IUSS Pavia, IMT Lucca*), where the available information did not permit the retrieval of personnel numbers for individual departments.  
   - The department spans across multiple universities, making it impossible to determine precise personnel figures for each university.  
   - The department was created after 2013.  
   - The department experienced significant personnel transfers—either incoming or outgoing—with a transfer rate exceeding 20% of the department’s size in a single year, which signals a merger or split.  
   - University-level data were unavailable (specifically, the Ministry does not provide information on the public income of the University of Trento).  
-Our final dataset is a balanced panel comprising 290 departments, observed from 2013 to 2020.
 
+Our final dataset is a balanced panel comprising 290 departments, observed from 2013 to 2020. 
+
+The final dataset, named `xxx.dta`, serves as the starting point for replicating the analyses and tables presented below.
 
 
 

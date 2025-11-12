@@ -127,7 +127,6 @@ bysort id: egen max_sh_tran = max(h)
 sum max_sh_tran, d
 tab max_sh_tran
 drop if max_sh_tran > 0.2
-*drop if max_sh_tran > 2
 
 
 * --------------------------------------------------
@@ -148,9 +147,6 @@ gen gr_i = ln_i - l.ln_i
 * --------------------------------------------------
 
 global w lagi
-*global w i
-
-*global covar lagi dep_transfer_horizontal tot_premiale VA_percap unemp_rate
 
 encode uni_name, g(uni_name_enc)
 encode zonageografica, g(zonageografica_enc)
@@ -165,8 +161,6 @@ save "${temp_path}/db_propscore.dta", replace
 
 use "${temp_path}/db_propscore.dta", clear
 
-*global covar lagi dep_transfer_horizontal tot_premiale VA_percap unemp_rate
-
 bysort id: gen y_flag = 1 if year >= 2014 & year <= 2017
 
 foreach var of global covar {
@@ -175,12 +169,6 @@ foreach var of global covar {
 
 logit treated *_pre i.zonageografica_enc
 predict yhat
-
-/*
-// weighting NT group only
-g ipw = 1 if treated == 1
-replace ipw = yhat / (1 - yhat) if treated == 0
-*/
 
 // weighting both T and NT groups
 g temp = 1 / yhat if treated == 1
@@ -228,19 +216,11 @@ label var unemp_rate "unemployment rate"
 
 
 
-* sanity check
-quietly summarize treated, meanonly
-assert abs(r(mean) - 0.5103448) < 1e-6
-
 cap est drop _all
 
 * Create post-treatment indicator for 2018–2020
 gen post2 = 1 if year >= 2018 & year <= 2020
 replace post2 = 0 if year >= 2014 & year <= 2017
-
-// this definition yields same results
-* gen post3 = 1 if year >= 2018 & year <= 2020
-* replace post3 = 0 if year >= 2013 & year <= 2017
 
 keep id year ///
 	new_position new_entry new_endogamia new_rtda new_rtdb new_ten_uni_all ///
@@ -270,3 +250,15 @@ label variable id "id department"
 compress
 save "${data_path}/data_for_analysis.dta", replace
 
+* --------------------------------------------------
+* Sanity Checks: Variable Means
+* --------------------------------------------------
+
+quietly summarize treated, meanonly
+assert abs(r(mean) - 0.5103448) < 1e-5
+
+quietly summarize LOWdep, meanonly
+assert abs(r(mean) - 0.4862069) < 1e-5
+
+quietly summarize post2, meanonly
+assert abs(r(mean) - 0.4285714) < 1e-5

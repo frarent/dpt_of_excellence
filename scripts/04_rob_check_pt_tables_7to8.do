@@ -18,38 +18,47 @@ Outputs:
 ==================================================================*/
 
 
+* --------------------------------------------------
+* Project: Beyond the Badge of Honour: The Effect of
+* the Italian (Department of) Excellence Initiative
+* on Staff Recruitment
+* Author: Francesco Rentocchini and Ugo Rizzo
+* Date: 12 Nov 2025
+*
+* Code Description
+* - Purpose: Check parallel-trend assumptions with DD models:
+*   (i) conditional on covariates and FEs; (ii) unconditional.
+* - Data inputs: ${data_path}/data_for_analysis.dta
+* - Expected outputs:
+*   - ${output}/Table_07.${tab_fmt} (conditional PT test)
+*   - ${output}/Table_08.${tab_fmt} (unconditional PT test)
+* --------------------------------------------------
 
-// SET GLOBALS AND LOCALS FOR ANALYSIS
-*=============================================================================*
+* --------------------------------------------------
+* Globals & locals (SET GLOBALS AND LOCALS FOR ANALYSIS)
+* --------------------------------------------------
 
-global covar lagi dep_transfer_horizontal tot_premiale VA_percap unemp_rate
+global covar lagi dep_transfer_horizontal tot_premiale VA_percap ///
+    unemp_rate
 
-global y new_position new_entry new_endogamia new_rtda new_rtdb new_ten_uni_all	
-
+global y new_position new_entry new_endogamia new_rtda ///
+    new_rtdb new_ten_uni_all
 
 global y1 est*_new_position est*_new_entry est*_new_endogamia
 global y2 est*_new_rtda est*_new_rtdb est*_new_ten_uni_all
 
-global plot_y1 est3_new_position est3_new_entry est3_new_endogamia	
+global plot_y1 est3_new_position est3_new_entry est3_new_endogamia
 global plot_y2 est3_new_rtda est3_new_rtdb est3_new_ten_uni_all
 
 * p hat in notes to tables
-local hat = uchar(770)              
+local hat = uchar(770)
 local phat = "p`hat'"
 
-// LOAD DATA
-*=============================================================================*
-use "${data_path}/db_robcheck.dta",clear
+* --------------------------------------------------
+* Conditional parallel trends (WITH COVARIATES)
+* --------------------------------------------------
 
-	
-
-
-
-* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-* CONDITIONAL PARALLEL TRENDS TEST (WITH COVARIATES)
-* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-use "${data_path}/db_robcheck.dta", clear
+use "${data_path}/data_for_analysis.dta", clear
 keep if year <= 2017
 
 cap est drop _all
@@ -70,7 +79,10 @@ foreach var of global y {
 
 }
 
-* Export DD conditional PT table
+* --------------------------------------------------
+* Export: Table 7 (DD conditional PT)
+* --------------------------------------------------
+
 esttab $y1 $y2 using "${output}/Table_07.${tab_fmt}", ///
     keep(1.treated#*) starlevels(+ 0.1 * 0.05 ** 0.01) ///
     varlabels( ///
@@ -85,30 +97,31 @@ esttab $y1 $y2 using "${output}/Table_07.${tab_fmt}", ///
         dep_transfer_horizontal "# of transfers" ///
         tot_premiale "amount of research funding" ///
         VA_percap "value added per capita" ///
-		unemp_rate "unemployment rate") ///
+        unemp_rate "unemployment rate") ///
     cells(b(star fmt(3)) se(par([ ]) fmt(3))) ///
     legend collabels(, none) ///
-    stats(dptyear contr univyear pscore ftest N N_clust, labels( ///
+    stats(dptyear contr univyear pscore ftest N N_clust, ///
+        labels( ///
         "Department and post FE" ///
         "Time-varying controls" ///
         "University-by-post FE" ///
         "Prop score weight" ///
         "Joint p-value" ///
-        "N (Departments X year)" "N (Departments)") fmt(0 0 0 0 3 0 0)) ///
+        "N (Departments X year)" "N (Departments)") ///
+        fmt(0 0 0 0 3 0 0)) ///
     addnotes("Notes. This table displays the pre-treatment event study coefficients using 2014-2016 data. Regressions are based on 1,104 department-year observations. Estimates include controls for the number of employees at t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Department, year and university-by-year fixed effects are included in all specifications. All regressions are estimated using 1/(1-`phat'(x<sub>i</sub>)) to weight untreated observations and 1/`phat'(x<sub>i</sub>) otherwise. `phat'(x<sub>i</sub>)  is the propensity score and is calculated controlling for the number of department research staff at time t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added, provincial unemployment rate and NUTS 1 regional fixed effects. Standard errors clustered at the department level are in parentheses.") ///
     nogaps onecell noomitted ///
-	mtitles("New positions"	"New positions (excl. promotions)"	///
-	"Internal promotions"	"Temporary"	"Tenure track"	"Tenured") ///
-	label ///
+    mtitles("New positions" "New positions (excl. promotions)" ///
+    "Internal promotions" "Temporary" "Tenure track" "Tenured") ///
+    label ///
     title("Table 7: Pre-treatment trends: parallel trend assumption") ///
     replace
 
+* --------------------------------------------------
+* Unconditional parallel trends test (NO COVARIATES)
+* --------------------------------------------------
 
-* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-* UNCONDITIONAL PARALLEL TRENDS TEST (NO COVARIATES)
-* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-use "${data_path}/db_robcheck.dta", clear
+use "${data_path}/data_for_analysis.dta", clear
 keep if year >= 2014 & year <= 2017
 
 cap est drop _all
@@ -129,6 +142,10 @@ foreach var of global y {
 
 }
 
+* --------------------------------------------------
+* Export: Table 8 (DD unconditional PT)
+* --------------------------------------------------
+
 esttab est3_* using "${output}/Table_08.${tab_fmt}", ///
     keep(1.treated#*) starlevels(+ 0.1 * 0.05 ** 0.01) ///
     varlabels( ///
@@ -143,19 +160,21 @@ esttab est3_* using "${output}/Table_08.${tab_fmt}", ///
         dep_transfer_horizontal "# of transfers" ///
         tot_premiale "amount of research funding" ///
         VA_percap "value added per capita" ///
-		unemp_rate "unemployment rate") ///
+        unemp_rate "unemployment rate") ///
     cells(b(star fmt(3)) se(par([ ]) fmt(3))) ///
     legend collabels(, none) ///
-    stats(dptyear contr univyear pscore ftest N N_clust, labels( ///
+    stats(dptyear contr univyear pscore ftest N N_clust, ///
+        labels( ///
         "Department and post FE" ///
         "Time-varying controls" ///
         "University-by-post FE" ///
         "Prop score weight" "Joint p-value" ///
-        "N (Departments X year)" "N (Departments)") fmt(0 0 0 0 3 0 0)) ///
+        "N (Departments X year)" "N (Departments)") ///
+        fmt(0 0 0 0 3 0 0)) ///
     addnotes("Notes. This table displays the pre-treatment event study coefficients using 2014-2016 data. Regressions are based on 1,160 department-year observations. Department and year fixed effects are included in all specifications. All regressions are estimated using 1/(1-`phat'(x<sub>i</sub>)) to weight untreated observations and 1/`phat'(x<sub>i</sub>) otherwise. `phat'(x<sub>i</sub>) is the propensity score and is calculated controlling for the number of department research staff at time t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added, provincial unemployment rate and NUTS 1 regional fixed effects. Standard errors clustered at the department level are in parentheses. ") ///
     nogaps onecell noomitted ///
-	mtitles("New positions"	"New positions (excl. promotions)"	///
-	"Internal promotions"	"Temporary"	"Tenure track"	"Tenured") ///
-	label ///
+    mtitles("New positions" "New positions (excl. promotions)" ///
+    "Internal promotions" "Temporary" "Tenure track" "Tenured") ///
+    label ///
     title("Table 8: Pre-treatment trends with no controls: unconditional parallel trend") ///
     replace

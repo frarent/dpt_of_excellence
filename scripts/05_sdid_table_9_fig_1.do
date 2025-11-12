@@ -1,26 +1,22 @@
-/*==================================================================
-Author: Francesco Rentocchini
-Current Date: 21 April 2025
-Project Name: Department of Excellence Project
+* --------------------------------------------------
+* Project: Beyond the Badge of Honour: The Effect of
+* the Italian (Department of) Excellence Initiative
+* on Staff Recruitment
+* Author: Francesco Rentocchini and Ugo Rizzo
+* Date: 12 Nov 2025
+*
+* Code Description
+* - Purpose: Estimate SDID DD and DDD effects and produce figures/tables.
+* - Data inputs: ${data_path}/data_for_analysis.dta
+* - Expected outputs:
+*   - ${temp_path}/gr_<outcome>.gph (per-outcome graphs)
+*   - ${output}/Figure_01.png (combined figure)
+*   - ${output}/Table_09.${tab_fmt} (SDID DDD summary table)
+* --------------------------------------------------
 
-Code Description:
-This script estimates treatment effects using the Synthetic Difference-
-in-Differences (SDID) method by Arkhangelsky et al. (2021), both in a 
-standard DD and in a DDD setup. The script computes ATT estimates 
-separately for LOWdep groups and combines results to evaluate 
-heterogeneous treatment effects.
-
-Outputs include:
-- Individual outcome SDID graphs
-- Grouped SDID plots (Panel Figures)
-- Summary table of DDD estimates across outcomes
-
-Inputs:
-- db_robcheck.dta
-==================================================================*/
-
-// SET GLOBALS AND LOCALS FOR ANALYSIS
-*=============================================================================*
+* --------------------------------------------------
+* Globals & locals (SET GLOBALS AND LOCALS FOR ANALYSIS)
+* --------------------------------------------------
 
 global covar lagi dep_transfer_horizontal tot_premiale VA_percap unemp_rate
 
@@ -28,11 +24,14 @@ global y new_position new_entry new_endogamia new_rtda new_rtdb new_ten_uni_all
 
 global reps 1000 // number of bootstrap replications
 
+
+
+
 * --------------------------------------------------
 * SDID DD ESTIMATES AND GRAPHS
 * --------------------------------------------------
 
-use "${data_path}/db_robcheck.dta", clear
+use "${data_path}/data_for_analysis.dta",clear
 
 
 * Generate treatment indicator from 2018 onward
@@ -101,7 +100,7 @@ graph export "${output}/Figure_01.png", replace width(10000)
 * SDID DDD ESTIMATES
 * --------------------------------------------------
 
-use "${data_path}/db_robcheck.dta", clear
+use "${data_path}/data_for_analysis.dta",clear
 
 
 
@@ -168,7 +167,9 @@ matrix colnames A = "New positions" ///
 matrix rownames A = "ATT" "Std Err" "p-value" "N(Departments)"
 
 
+* --------------------------------------------------
 * Export summary table
+* --------------------------------------------------
 esttab matrix(A, fmt(3 3 3)) using ///
     "$output/Table_09.${tab_fmt}", ///
     replace unstack align(center) nomtitles se ///

@@ -2,7 +2,6 @@
 * Project title: Beyond the Badge of Honour: The Effect of the Italian 
 *	(Department of) Excellence Initiative on Staff Recruitment 
 * Created by: Francesco Rentocchini and Ugo Rizzo
-* Original Date: 21/03/2024
 * Last Update: 11/3/2025
 *=============================================================================*
 
@@ -26,17 +25,11 @@ clear all
 // Download raw data (0 for no; 1 for yes)
 global downloads 0
 
-// Build dataset used in analysis (0 for no; 1 for yes)
-global build_data 0
-
 // Run main analysis script (0 for no; 1 for yes)
-global analysis 0
+global analysis 1
 
 // Run rob check script (0 for no; 1 for yes)
-global robcheck 0 
-
-// Run partial effects (0 for no; 1 for yes)
-global partial 0
+global robcheck 1 
 
 // Run rob check script long (0 for no; 1 for yes)
 global robcheck_long 0
@@ -146,29 +139,21 @@ matrix drop _all
 // Run do files
 *=============================================================================*
 
-// Build data
-if $build_data == 1 {
-	do $script_path/07_build_DBs.do
-}
-
 // Run main analysis
 if $analysis == 1 {
-	do $script_path/08_analysis_avg.do
+	include $script_path/01_descriptives_table_1.do
+	include $script_path/02_estimates_tables_2to5.do
+	include $script_path/03_group_eff_table_6.do
 }
 
 // Run robustness checks
 if $robcheck == 1 {
-	do $script_path/09_analysis_avg_RC.do
-}
-
-// Run robustness checks
-if $partial == 1 {
-	do $script_path/11_partial_effects.do
+	include $script_path/04_rob_check_pt_tables_7to8.do
 }
 
 // Run robustness checks (time consuming one)
 if $robcheck_long == 1 {
-	do $script_path/10_analysis_avg_RC_long.do
+	include $script_path/05_sdid_table_9_fig_1.do
 }
 
 
@@ -176,7 +161,7 @@ if $robcheck_long == 1 {
 di "End date and time: $S_DATE $S_TIME"
 log close
 
-// Housekeeping
+// Housekeeping (clean all temporary files)
 *==========================================================================*
 local temp: dir ${temp_path} files "*"
 dis `temp'

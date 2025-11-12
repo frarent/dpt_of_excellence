@@ -1,34 +1,34 @@
-/*=============================================================================*
-* Project title: Beyond the Badge of Honour: The Effect of the Italian 
-*	(Department of) Excellence Initiative on Staff Recruitment 
-* Created by: Francesco Rentocchini and Ugo Rizzo
-* Original Date: 21/03/2024
-* Last Update: 11/3/2025
-----------------------------------------------------------------------
+* --------------------------------------------------
+* Author: Francesco Rentocchini and Ugo Rizzo
+* Current Date: 12 Nov 2025
+* Project Name: Beyond the Badge of Honour: The Effect of the Italian
+* (Department of) Excellence Initiative on Staff Recruitment
+* 
+* Code Description:
+* Purpose: Estimate DD and DDD effects of the Department of Excellence
+* programme on university staff recruitment outcomes.
+* 
+* Data inputs: ${data_path}/data_for_analysis.dta, including treatment
+* indicators (treated, post2), department IDs (id), university IDs
+* (uni_name_enc), covariates (lagi, dep_transfer_horizontal,
+* tot_premiale, VA_percap, unemp_rate), propensity score weights
+* (w_ipw_pre), and outcome variables grouped in globals y, y1, y2.
+* 
+* Outputs: Regression result tables saved to 
+* ${output}/Table_02.${tab_fmt},
+* ${output}/Table_03.${tab_fmt}, ${output}/Table_04.${tab_fmt},
+* and ${output}/Table_05.${tab_fmt}.
+* --------------------------------------------------
 
-Code Description:
-This script prepares and analyzes panel data to evaluate the effect of
-the Department of Excellence (DoE) programme on faculty hiring. It
-includes construction of pre/post indicators, and difference-in-
-differences (DD) and difference-in-differences-in-differences (DDD)
-regression estimations using department-level panel data from 2014–2020.
+* --------------------------------------------------
+* SET GLOBALS AND LOCALS FOR ANALYSIS
+* --------------------------------------------------
 
-Inputs:
-- db_before_est.dta: Main panel dataset with department-year observations.
+global covar lagi dep_transfer_horizontal tot_premiale VA_percap ///
+    unemp_rate
 
-Outputs:
-- db_robcheck.dta: Dataset with pre/post treatment indicator saved.
-- tables_01_DD_avg: DD regression results tables (Panel A & B).
-- tables_02_DDD_avg: DDD regression results tables (Panel A & B).
-==================================================================*/
-
-
-// SET GLOBALS AND LOCALS FOR ANALYSIS
-*=============================================================================*
-
-global covar lagi dep_transfer_horizontal tot_premiale VA_percap unemp_rate
-
-global y new_position new_entry new_endogamia new_rtda new_rtdb new_ten_uni_all	
+global y new_position new_entry new_endogamia new_rtda new_rtdb ///
+    new_ten_uni_all	
 
 
 global y1 est*_new_position est*_new_entry est*_new_endogamia
@@ -41,10 +41,10 @@ global plot_y2 est3_new_rtda est3_new_rtdb est3_new_ten_uni_all
 local hat = uchar(770)              
 local phat = "p`hat'"
 
-// LOAD DATA
-*=============================================================================*
-use "${data_path}/db_robcheck.dta",clear
-
+* --------------------------------------------------
+* Data Import: Loading raw data from external sources.
+* --------------------------------------------------
+use "${data_path}/data_for_analysis.dta", clear
 
 
 * --------------------------------------------------
@@ -84,12 +84,13 @@ foreach var of global y {
     est store est3_`var'
 }
 
-* -----------------------------------------------
+* --------------------------------------------------
 * Table 2 - DD on Faculty Recruitment
-* -----------------------------------------------
+* --------------------------------------------------
 
 esttab $y1 using "${output}/Table_02.${tab_fmt}", ///
-    keep(1.treated#* lagi dep_transfer_horizontal tot_premiale VA_percap unemp_rate) ///
+    keep(1.treated#* lagi dep_transfer_horizontal tot_premiale ///
+         VA_percap unemp_rate) ///
     starlevels(+ 0.1 * 0.05 ** 0.01) ///
     drop(1.treated#0.post2) ///
     varlabels( ///
@@ -98,7 +99,7 @@ esttab $y1 using "${output}/Table_02.${tab_fmt}", ///
         dep_transfer_horizontal "# of transfers" ///
         tot_premiale "amount of research funding" ///
         VA_percap "value added per capita" ///
-		unemp_rate "unemployment rate") ///
+        unemp_rate "unemployment rate") ///
     cells(b(star fmt(3)) se(par([ ]) fmt(3))) ///
     legend collabels(, none) ///
     stats(dptyear contr univyear pscore N_clust, ///
@@ -109,7 +110,7 @@ esttab $y1 using "${output}/Table_02.${tab_fmt}", ///
                "N (Departments)") fmt(0 0 0 0 0)) ///
     addnotes("Notes. This table displays the average treatment on the treated coefficient using 2014-2020 data. Regressions are based on 2,029 department-year observations. Estimates include controls for the number of employees at t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Department, post treatement fixed effects are included in all specifications. Columns 2, 3, 5, 6, 8 and 9 also include university-by-post fixed effects. Regressions in columns 3, 6 and 9 are estimated using 1/(1-`phat'(x<sub>i</sub>)) to weight untreated observations and 1/`phat'(x<sub>i</sub>) otherwise. `phat'(x<sub>i</sub>) is the propensity score and is calculated controlling for the number of department research staff at time t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added, provincial unemployment rate and NUTS 1 regional fixed effects. Standard errors clustered at the department level are in parentheses. ") ///
     nogaps onecell ///
-	label ///
+    label ///
     title("Table 2: Effect of the Department of Excellence Programme on University Faculty Recruitment: new positions and internal promotions") ///
     replace
 
@@ -118,7 +119,8 @@ esttab $y1 using "${output}/Table_02.${tab_fmt}", ///
 * --------------------------------------------------
 
 esttab $y2 using "${output}/Table_03.${tab_fmt}", ///
-    keep(1.treated#* lagi dep_transfer_horizontal tot_premiale VA_percap unemp_rate) ///
+    keep(1.treated#* lagi dep_transfer_horizontal tot_premiale ///
+         VA_percap unemp_rate) ///
     starlevels(+ 0.1 * 0.05 ** 0.01) ///
     drop(1.treated#0.post2) ///
     varlabels( ///
@@ -127,7 +129,7 @@ esttab $y2 using "${output}/Table_03.${tab_fmt}", ///
         dep_transfer_horizontal "# of transfers" ///
         tot_premiale "amount of research funding" ///
         VA_percap "value added per capita" ///
-		unemp_rate "unemployment rate") ///
+        unemp_rate "unemployment rate") ///
     cells(b(star fmt(3)) se(par([ ]) fmt(3))) ///
     legend collabels(, none) ///
     stats(dptyear contr univyear pscore N_clust, ///
@@ -138,13 +140,14 @@ esttab $y2 using "${output}/Table_03.${tab_fmt}", ///
                "N (Departments)") fmt(0 0 0 0 0)) ///
     addnotes("Notes. This table displays the average treatment on the treated coefficients using 2014-2020 data. Regressions are based on 2,029 department-year observations. Estimates include controls for the number of employees at t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Department, post treatment fixed effects are included in all specifications. Columns 2, 3, 5, 6, 8 and 9 also include university-by-post fixed effects. Regressions in columns 3, 6 and 9 are estimated using 1/(1-`phat'(x<sub>i</sub>)) to weight untreated observations and 1/`phat'(x<sub>i</sub>) otherwise. `phat'(x<sub>i</sub>) is the propensity score and is calculated controlling for the number of department research staff at time t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added, provincial unemployment rate and NUTS 1 regional fixed effects. Standard errors clustered at the department level are in parentheses") ///
     nogaps onecell ///
-	label ///
+    label ///
     title("Table 3 Effect of the Department of Excellence Programme on University Faculty Recruitment: temporary and permanent positions") ///
     replace
 
 
 * --------------------------------------------------
-* Difference-in-Difference-in-Differences (DDD): Second Tier University Departments
+* Difference-in-Difference-in-Differences (DDD):
+* Second Tier University Departments
 * --------------------------------------------------
 
 cap est drop _all
@@ -186,9 +189,9 @@ foreach var of global y {
 
 
 * --------------------------------------------------
-* Table 4: Difference-in-Difference-in-Differences (DDD): Faculty Recruitment
+* Table 4: DDD — Faculty Recruitment
 * --------------------------------------------------
-esttab $y1 using "${output}/Table_04.${tab_fmt}", ///
+ esttab $y1 using "${output}/Table_04.${tab_fmt}", ///
     keep(1.treated#1.L*#*post2 lagi dep_transfer_horizontal ///
          tot_premiale VA_percap unemp_rate) ///
     drop(1.treated#1.LOWdep#0.post2) ///
@@ -199,7 +202,7 @@ esttab $y1 using "${output}/Table_04.${tab_fmt}", ///
         dep_transfer_horizontal "# of transfers" ///
         tot_premiale "amount of research funding" ///
         VA_percap "value added per capita" ///
-		unemp_rate "unemployment rate") ///
+        unemp_rate "unemployment rate") ///
     cells(b(star fmt(3)) se(par([ ]) fmt(3))) ///
     legend collabels(, none) ///
     stats(dptyear contr univyear pscore N_clust, ///
@@ -210,14 +213,14 @@ esttab $y1 using "${output}/Table_04.${tab_fmt}", ///
                "N (Departments)") fmt(0 0 0 0 0)) ///
     addnotes("Notes. This table displays the average treatment on the treated coefficients for second tier departments using 2014-2020 data. Regressions are based on 2,029 department-year observations. Estimates include controls for the number of employees at t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Department, post treatment fixed effects are included in all specifications. Columns 2, 3, 5, 6, 8 and 9 also include university-by-post fixed effects. Regressions in columns 3, 6 and 9 are estimated using 1/(1-`phat'(x<sub>i</sub>)) to weight untreated observations and 1/`phat'(x<sub>i</sub>) otherwise. `phat'(x<sub>i</sub>) is the propensity score and is calculated controlling for the number of department research staff at time t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added, provincial unemployment rate and NUTS 1 regional fixed effects. Standard errors clustered at the department level are in parentheses. ") ///
     nogaps onecell ///
-	label ///
+    label ///
     title("Table 4: Effect of the Department of Excellence Programme on University Faculty Recruitment for second tier university departments: new positions and internal promotions") ///
     replace
 
-* -----------------------------------------------
+* --------------------------------------------------
 * Table 5 - DDD Temporary & Tenure-Track
-* -----------------------------------------------
-esttab $y2 using "${output}/Table_05.${tab_fmt}", ///
+* --------------------------------------------------
+ esttab $y2 using "${output}/Table_05.${tab_fmt}", ///
     keep(1.treated#1.L*#*post2 lagi dep_transfer_horizontal ///
          tot_premiale VA_percap unemp_rate) ///
     drop(1.treated#1.LOWdep#0.post2) ///
@@ -228,7 +231,7 @@ esttab $y2 using "${output}/Table_05.${tab_fmt}", ///
         dep_transfer_horizontal "# of transfers" ///
         tot_premiale "amount of research funding" ///
         VA_percap "value added per capita" ///
-		unemp_rate "unemployment rate") ///
+        unemp_rate "unemployment rate") ///
     cells(b(star fmt(3)) se(par([ ]) fmt(3))) ///
     legend collabels(, none) ///
     stats(dptyear contr univyear pscore N_clust, ///
@@ -239,11 +242,12 @@ esttab $y2 using "${output}/Table_05.${tab_fmt}", ///
                "N (Departments)") fmt(0 0 0 0 0)) ///
     addnotes("Notes. This table displays the average treatment on the treated coefficients for second tier departments using 2014-2020 data. Regressions are based on 2,029 department-year observations. Estimates include controls for the number of employees at t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Department, post treatment fixed effects are included in all specifications. Columns 2, 3, 5, 6, 8 and 9 also include university-by-post fixed effects. Regressions in columns 3, 6 and 9 are estimated using 1/(1-`phat'(x<sub>i</sub>)) to weight untreated observations and 1/`phat'(x<sub>i</sub>) otherwise. `phat'(x<sub>i</sub>) is the propensity score and is calculated controlling for the number of department research staff at time t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added, provincial unemployment rate and NUTS 1 regional fixed effects. Standard errors clustered at the department level are in parentheses") ///
     nogaps onecell ///
-	label ///
+    label ///
     title("Table 5: Effect of the Department of Excellence Programme on University Faculty Recruitment for second tier university departments: temporary and permanent positions") ///
     replace
 
-
+	
+	
 * --------------------------------------------------
 * Sanity Checks: Variable Means
 * --------------------------------------------------

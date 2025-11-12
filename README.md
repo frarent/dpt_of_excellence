@@ -51,12 +51,12 @@ The table below describes all `.do` files included in this repository, in the or
 
 | Name of file | Type | Description | Tables / Figures generated |
 |---|---|---|---|
-| `00_Main.do` | main / setup | Sets Stata version, defines globals/paths, checks or installs required user-written packages (if requested), creates output/log folders, and calls all other scripts in sequence. | — (orchestrates full run) |
-| `01_Descriptives_Table_1.do` | analysis — descriptives | Builds the analysis sample and produces summary statistics and diagnostic checks used in the paper. | **Table 1** (Descriptive statistics) |
-| `02_Estimates_Tables_2to5.do` | analysis — main results | Estimates baseline specifications (e.g., FE/DID with covariates) and formats outputs. | **Tables 2–5** (Main regressions) |
-| `03_GroupEff_Table_6.do` | analysis — heterogeneity | Computes group/contrast effects and other heterogeneity analyses; exports formatted output. | **Table 6** (Group effects) |
-| `04_RobCheck_PT_Tables_7to8.do` | analysis — robustness / placebo | Runs robustness and placebo checks (alternative samples/definitions/timing). | **Tables 7–8** (Robustness & placebo) |
-| `05_Sdid_Table_9_Fig_1.do` | analysis — SDID / event study | Implements synthetic DiD and event-study style diagnostics; exports a figure and a final table. | **Table 9**; **Figure 1** |
+| `00_main.do` | main / setup | Sets Stata version, defines globals/paths, checks or installs required user-written packages (if requested), creates output/log folders, and calls all other scripts in sequence. | orchestrates full run |
+| `01_descriptives_table_1.do` | analysis - descriptives | Builds the analysis sample and produces summary statistics. | **Table 1** (Descriptive statistics) |
+| `02_estimates_tables_2to5.do` | analysis - main results | Estimates baseline specifications (e.g., DID and DDD with covariates) and formats outputs. | **Tables 2–5** (Main regressions) |
+| `03_group_eff_table_6.do` | analysis - heterogeneity | Computes group/contrast effects and other heterogeneity analyses; exports formatted output. | **Table 6** (Group effects) |
+| `04_rob_check_pt_tables_7to8.do` | analysis - robustness | Runs robustness checks (conditional and unconditional parallel trend). | **Tables 7–8** (Robustness PT) |
+| `05_sdid_table_9_fig_1.do` | analysis - synthetic DID | Implements synthetic DiD; exports a figure and a final table. | **Table 9**; **Figure 1** |
 
 
 ### Replication Instructions

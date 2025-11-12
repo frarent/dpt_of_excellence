@@ -1,37 +1,56 @@
-* -------------------------------------------------------------
-* REPLICATE THE DOCX DESCRIPTIVE TABLE AS HTML
-* -------------------------------------------------------------
-* Assumptions:
-* - treated == 1/0 (treated/control)
-* - LOWdep == 1 for "second-tier", 0 for "first-tier"
-* - Variable labels are set sensibly; we override below to match the DOCX text exactly.
-* - $covar includes the controls used below (adjust names if needed).
-* -------------------------------------------------------------
+/* =====================================================================
+* Author: Francesco Rentocchini and Ugo Rizzo
+* Current Date: 12/11/2025
+* Project Name: Beyond the Badge of Honour: The Effect of the Italian
+*               (Department of) Excellence Initiative on Staff Recruitment
+* 
+* Code Description
+*   Purpose: Define the analytical sample via a baseline reghdfe, compute
+*   summary statistics for dependent and control variables overall and by
+*   treatment/tier groups, and export Table 1 (HTML).
+* 
+*   Data Inputs
+*     - ${data_path}/db_robcheck.dta
+* 
+*   Expected Outputs
+*     - ${output}/overall.html : summary statistics table (9 columns)
+* 
+* ===================================================================== */
 
-* 0) Setup and sample
 use "${data_path}/db_robcheck.dta", clear
 
-* define outcome variables (your set)
-global y new_position new_entry new_endogamia new_rtda new_rtdb new_ten_uni_all
 
-* main regression to define analytical sample
+// SET GLOBALS AND LOCALS FOR ANALYSIS
+* =====================================================================
+
+global covar lagi dep_transfer_horizontal tot_premiale VA_percap ///
+    unemp_rate
+global y new_position new_entry new_endogamia new_rtda new_rtdb ///
+    new_ten_uni_all	
+
+
+// COMPUTE SUMMARY STATS
+* =====================================================================
+
+* Main regression to define analytical sample
 qui reghdfe new_position ib0.treated##i.post2 $covar [pweight=w_ipw_pre], ///
     absorb(id i.uni_name_enc#i.post2) vce(cluster id)
 keep if e(sample)
 
-* scale research funding to millions (as in your workflow)
+* Scale research funding to millions
 capture confirm variable tot_premiale
 if !_rc replace tot_premiale = tot_premiale/1000000
 
-* 1) Put variables in the exact row order shown in the DOCX
-local depvars  new_position new_entry new_endogamia new_rtda new_rtdb new_ten_uni_all
-* EDIT the control names below to match your dataset (keep this order):
-* # researchers ; # of transfers ; research funding (mil €) ; value added per capita ; unemployment rate
-local ctrls    lagi dep_transfer_horizontal tot_premiale VA_percap unemp_rate
+* Put variables in the exact order
+local depvars  new_position new_entry new_endogamia new_rtda new_rtdb ///
+    new_ten_uni_all
+* # researchers ; # of transfers ; research funding (mil €) ; value added
+* per capita ; unemployment rate
+local ctrls    lagi dep_transfer_horizontal tot_premiale VA_percap ///
+    unemp_rate
 
 
-
-* 2) Compute summary stats for each column (listwise so N matches the table's single N per column)
+* Compute summary stats for each column
 eststo clear
 estpost summarize `depvars' `ctrls', listwise
 eststo overall
@@ -61,17 +80,18 @@ estpost summarize `depvars' `ctrls' if treated==0 & LOWdep==0, listwise
 eststo ct_fst
 
 
-    
+// GENERATES TABLE
+* =====================================================================
 
-* 3) Export HTML with mean on top and (SD) on the next line; column labels & numbering as in the DOCX
-esttab overall tr ct sec fst tr_sec tr_fst ct_sec ct_fst using "${output}/overall.html", ///
-    replace style(html) label noobs nonumber collabels(none) ///
-    mtitle("overall (1)" "treated (2)" "untreated (3)" "second-tier (4)" "first-tier (5)" ///
-           "treated second-tier (6)" "treated first-tier (7)" "untreated second-tier (8)" "untreated first-tier (9)") ///
-    cells("mean(fmt(2)) sd(par fmt(2))") ///
+esttab overall tr ct sec fst tr_sec tr_fst ct_sec ct_fst using ///
+    "${output}/overall.html", replace style(html) label noobs nonumber ///
+    collabels(none) mtitle("overall (1)" "treated (2)" "untreated (3)" ///
+    "second-tier (4)" "first-tier (5)" "treated second-tier (6)" ///
+    "treated first-tier (7)" "untreated second-tier (8)" ///
+    "untreated first-tier (9)") cells("mean(fmt(2)) sd(par fmt(2))") ///
     stats(N, labels("Observations") fmt(0)) ///
-	addnotes("Notes. Table shows summary statistics for the full sample (column 1) and for several sub-samples. Sub-samples are: treated (column 2) and untreated (column 3) departments, second- (column 4) and first-tier departments (column 5), treated second – (column 6) and treated first-tier departments (column 7), untreated second – (column 8) and untreated first-tier departments (column 9). Summary statistics are means and standard deviations (in parentheses).") ///
-	title("Table 1: Summary statistics, full sample and sub-samples") ///
+    addnotes("Notes. Table shows summary statistics for the full sample (column 1) and for several sub-samples. Sub-samples are: treated (column 2) and untreated (column 3) departments, second- (column 4) and first-tier departments (column 5), treated second – (column 6) and treated first-tier departments (column 7), untreated second – (column 8) and untreated first-tier departments (column 9). Summary statistics are means and standard deviations (in parentheses).") ///
+    title("Table 1: Summary statistics, full sample and sub-samples") ///
     varlabels( ///
         new_position        "New positions" ///
         new_entry           "New positions (excl. promotions)" ///
@@ -79,10 +99,24 @@ esttab overall tr ct sec fst tr_sec tr_fst ct_sec ct_fst using "${output}/overal
         new_rtda            "Temporary" ///
         new_rtdb            "Tenure track" ///
         new_ten_uni_all     "Tenured" ///
-        lagi       "# researchers" ///
-        dep_transfer_horizontal           "# of transfers" ///
+        lagi                "# researchers" ///
+        dep_transfer_horizontal "# of transfers" ///
         tot_premiale        "research funding (mil &euro;)" ///
-        VA_percap               "value added per capita" ///
-        unemp_rate               "unemployment rate" ///
+        VA_percap           "value added per capita" ///
+        unemp_rate          "unemployment rate" ///
     ) ///
-    refcat(new_position "Dependent variables" lagi "Control variables", nolabel)
+    refcat(new_position "Dependent variables" lagi "Control variables", ///
+    nolabel)
+
+* --------------------------------------------------
+* Sanity Checks: Variable Means
+* --------------------------------------------------
+
+quietly summarize treated, meanonly
+assert abs(r(mean) - 0.5103448) < 1e-6
+
+quietly summarize LOWdep, meanonly
+assert abs(r(mean) - 0.4862069) < 1e-6
+
+quietly summarize post2, meanonly
+assert abs(r(mean) - 0.4285714) < 1e-6

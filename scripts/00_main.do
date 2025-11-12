@@ -24,7 +24,7 @@ clear all
 *=============================================================================*
 
 // Download raw data (0 for no; 1 for yes)
-global downloads 1
+global downloads 0
 
 // Build dataset used in analysis (0 for no; 1 for yes)
 global build_data 0

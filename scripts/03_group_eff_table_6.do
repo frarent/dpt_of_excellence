@@ -5,6 +5,14 @@
 * different comparison categories across columns
 * ============================================================================
 
+
+// SET GLOBALS AND LOCALS FOR ANALYSIS
+*=============================================================================*
+
+global covar lagi dep_transfer_horizontal tot_premiale VA_percap unemp_rate
+
+global y new_position new_entry new_endogamia new_rtda new_rtdb new_ten_uni_all	
+
 use "${data_path}/db_robcheck.dta", clear
 est drop _all
 

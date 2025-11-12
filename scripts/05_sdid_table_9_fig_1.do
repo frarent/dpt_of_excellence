@@ -19,14 +19,18 @@ Inputs:
 - db_robcheck.dta
 ==================================================================*/
 
-*covariates($covar , projected)
+// SET GLOBALS AND LOCALS FOR ANALYSIS
+*=============================================================================*
+
+global covar lagi dep_transfer_horizontal tot_premiale VA_percap unemp_rate
+
+global y new_position new_entry new_endogamia new_rtda new_rtdb new_ten_uni_all	
+
+global reps 1000 // number of bootstrap replications
 
 * --------------------------------------------------
 * SDID DD ESTIMATES AND GRAPHS
 * --------------------------------------------------
-
-*macro
-global reps 1000
 
 use "${data_path}/db_robcheck.dta", clear
 
@@ -47,7 +51,7 @@ drop flag_miss*
 
 * Estimate SDID and generate graphs
 foreach var of global y {
-
+	set seed 150749
     sdid `var' id year treat_from2018, ///
         vce(bootstrap) covariates($covar) ///
         reps(${reps}) seed(123) ///
@@ -72,34 +76,11 @@ foreach var of global y {
 
 
 * --------------------------------------------------
-* Combined Graph Panels
+* Combined Graph
 * --------------------------------------------------
 
-* Panel 1: Core hiring outcomes
-grc1leg "${temp_path}/gr_new_position.gph" ///
-    "${temp_path}/gr_new_entry.gph" ///
-    "${temp_path}/gr_new_endogamia.gph", ///
-    cols(2) imargin(1 1 1) xcommon ///
-    legendfrom("${temp_path}/gr_new_position.gph") ///
-    ring(1) position(6) ///
-    note("Synthetic Difference-in-Difference estimator (Arkhangelsky et al., 2021). Estimates include controls for the number of employees at t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Lambda weights are shown in grey and are defined as optimized time weights assigned to control units to construct the synthetic control that minimize the differences with the treated unit during the pre-treatment period. Standard errors are based on 1000 bootstrap replications. ", span size(.15cm))
 
-graph export "${output}/g03_RC06_DD_sdid1.png", replace width(10000)
-
-
-* Panel 2: Temporary and tenured tracks
-grc1leg "${temp_path}/gr_new_rtda.gph" ///
-    "${temp_path}/gr_new_rtdb.gph" ///
-    "${temp_path}/gr_new_ten_uni_all.gph", ///
-    cols(2) imargin(1 1 1) xcommon ///
-    legendfrom("${temp_path}/gr_new_rtda.gph") ///
-    ring(1) position(6) ///
-    note("Synthetic Difference-in-Difference estimator (Arkhangelsky et al., 2021). Estimates include controls for the number of employees at t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Lambda weights are shown in grey and are defined as optimized time weights assigned to control units to construct the synthetic control that minimize the differences with the treated unit during the pre-treatment period. Standard errors are based on 1000 bootstrap replications. ", span size(.15cm))
-
-graph export "${output}/g04_RC06_DD_sdid2.png", replace width(10000)
-
-
-* Panel 3: All outcomes (combined)
+* All outcomes (combined)
 grc1leg "${temp_path}/gr_new_position.gph" ///
     "${temp_path}/gr_new_entry.gph" ///
     "${temp_path}/gr_new_endogamia.gph" ///
@@ -108,9 +89,12 @@ grc1leg "${temp_path}/gr_new_position.gph" ///
     "${temp_path}/gr_new_ten_uni_all.gph", ///
     cols(2) imargin(1 1 1) xcommon ///
     legendfrom("${temp_path}/gr_new_position.gph") ///
-    ring(1) position(6)
+    ring(1) position(6) ///
+	note("Synthetic Difference-in-Difference estimator (Arkhangelsky et al., 2021). Estimates include controls for the number of employees at t-1, the number of staff transferred between departments," ///
+	"university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Lambda weights are shown in grey and are defined as optimized time weights assigned" ///
+	"to control units to construct the synthetic control that minimize the differences with the treated unit during the pre-treatment period. Standard errors are based on 1000 bootstrap replications. ", span size(.15cm))
 
-graph export "${output}/04_Sdid_Figure_1.png", replace width(10000)
+graph export "${output}/Figure_01.png", replace width(10000)
 
 
 * --------------------------------------------------
@@ -129,7 +113,7 @@ replace treat_from2018 = 0 if treated == 1 & year < 2018
 keep id year treat_from2018 $y $covar LOWdep
 keep if year > 2013
 
-* Drop unbalanced panels due to missing vars
+* Drop observations to square the panel
 egen flag_miss = rowmiss($y $covar treat_from2018 LOWdep)
 bysort id: egen flag_miss2 = total(flag_miss)
 drop if flag_miss2 == 1
@@ -140,10 +124,11 @@ drop flag_miss*
 * Create result matrix
 matrix A = J(3, 9, .)
 
+* Sdid estimates
 local i 0
 foreach var of global y {
     local ++i
-
+	set seed 150749
     * ATT for LOW = 1
     sdid `var' id year treat_from2018 if LOWdep == 1, ///
         vce(bootstrap) covariates($covar) ///
@@ -170,17 +155,22 @@ foreach var of global y {
 }
 
 
-matrix colnames A = "# of new positions" ///
-    "# of new pos excl promotions" "# of internal promotions" ///
-	"# of new temporary positions" ///
-    "# of new tenure track positions" "# of new tenured positions"
     
-
-matrix rownames A = "ATT" "Std Err" "p-value"
+* Assemble and label matrix contatining results
 matrix A = A[., 1..6]
+distinct id
+matrix B =[r(ndistinct),r(ndistinct),r(ndistinct) ,r(ndistinct) ,r(ndistinct) ,r(ndistinct)]
+matrix A=[A\B]
+matrix colnames A = "New positions" ///
+    "New positions (excl promotions)" "Internal promotions" ///
+	"Temporary" ///
+    "Tenure track" "Tenured"
+matrix rownames A = "ATT" "Std Err" "p-value" "N(Departments)"
+
 
 * Export summary table
 esttab matrix(A, fmt(3 3 3)) using ///
-    "$output/05_SDID_Table_9.${tab_fmt}", ///
+    "$output/Table_09.${tab_fmt}", ///
     replace unstack align(center) nomtitles se ///
-    note("SE are bootstraped 1000 reps")
+	title("Table 9: Effect of the Department of Excellence Programme on University Faculty Recruitment for second tier university departments: Synthetic Diff-in-Diff estimator") ///
+    addnotes("Notes: this table displays results from the synthetic difference-in-difference estimator (Arkhangelsky et al., 2021), based on 2,023 department-year observations using 2014-2020 data. Estimates include controls for the number of employees at t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Standard errors are based on 1000 bootstrap replications.")

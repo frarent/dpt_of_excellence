@@ -24,7 +24,7 @@ clear all
 *=============================================================================*
 
 // Download raw data (0 for no; 1 for yes)
-global downloads 0
+global downloads 1
 
 // Build dataset used in analysis (0 for no; 1 for yes)
 global build_data 0
@@ -59,7 +59,8 @@ net set ado "stata_packages"
 local packages  blindschemes /// plot scheme 
 	reghdfe ftools /// high dimensional fixed effects regressions
 	estout /// table exporting tool
-	distinct // num unique observations
+	distinct /// num unique observations
+	coefplot // plots of coefficients
 	
 if $downloads == 1 {
 	foreach name of local packages  {
@@ -68,11 +69,9 @@ if $downloads == 1 {
 
 	}
 
-	net install sdid, ///
+	net install sdid, /// synthetic DID
 		from("https://raw.githubusercontent.com/daniel-pailanir/sdid/master") replace
-	* cleanplots coefplot ppmlhdfe  ///
-	drdid
-	*net install http://www.stata.com/users/vwiggins/grc1leg.pkg
+	net install http://www.stata.com/users/vwiggins/grc1leg.pkg // combine graphs
 
 }
 

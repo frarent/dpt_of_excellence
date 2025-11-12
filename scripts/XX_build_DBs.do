@@ -263,5 +263,24 @@ keep id year ///
 	lagi dep_transfer_horizontal tot_premiale VA_percap unemp_rate ///
 	w_ipw_pre uni_name_enc
 
+* Label data and variables
+label data "Italian Department of Excellence panel data 2013-2020"
+label variable new_position "New positions"
+label variable new_entry "New Positions (excl. promotions)"
+label variable new_endogamia "Internal promotions"
+label variable new_rtda "Temporary"
+label variable new_rtdb "Tenure track"
+label variable new_ten_uni_all "Tenured"
+label variable treated "Treat"
+label variable post2 "After"
+label variable LOWdep "Second-tier"
+label variable lagi "# researchers"
+label variable dep_transfer_horizontal "# of transfers"
+label variable tot_premiale "amount of research funding"
+label variable VA_percap "value added per capita"
+label variable unemp_rate "unemployment rate"
+label variable year "year"
+label variable id "id department"
+
 compress
 save "${data_path}/db_robcheck.dta", replace

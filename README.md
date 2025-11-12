@@ -1,7 +1,13 @@
 # Beyond the Badge of Honour: The Effect of the Italian (Department of) Excellence Initiative on Staff Recruitment
-Replication package for the paper "Beyond the Badge of Honour: The Effect of the Italian (Department of) Excellence Initiative on Staff Recruitment" published on _Oxford Economic Papers_
+Replication package for the analysis in the paper:
+
+> Rizzo, U., Rentocchini, F., Seeber, M. and Ramaciotti, L. (2025), Beyond the Badge of Honour: The Effect of the Italian (Department of) Excellence Initiative on Staff Recruitment, Oxford Economic Papers, forthcoming
+
+Please cite the above paper when using any of these programs.
 
 Authors: [Ugo Rizzo](https://docente.unife.it/docenti-en/ugo.rizzo?set_language=en), [Francesco Rentocchini](https://frarent.github.io/), [Marco Seeber](https://www.uia.no/english/about-uia/employees/marcos/index.html), [Laura Ramaciotti](https://docente.unife.it/docenti-en/laura.ramaciotti?set_language=en)
+
+
 
 ## Data 
 
@@ -39,7 +45,7 @@ In the table below a description of all the do files and folders in the replicat
 
 XXX
 
-### Replication Guidelines
+### Replication Instructions
 Download the entire zipped folder and open the Stata project `XXX.stpr`. All the scripts will appear in the project manager:
 
 - `scripts/00.master.do`: sets up the environment and calls the other scripts to run the estimates and create tables and graphs. There is no need to adjust paths, nor downloading the user-written packages as they are already contained in `stata_packages`. It suffices to run `scripts/00_master.do` to get the estimates.
@@ -47,3 +53,5 @@ Download the entire zipped folder and open the Stata project `XXX.stpr`. All the
 - `scripts/01.XXX.do`: contains XXX.
 
 As several of these user-written packages have been developed recently, it is worth checking for updates by changing `global downloads 0` into `global downloads 1` in `scripts/00_master.do`. This will automatically update all packages.
+
+### Variable Codebook

@@ -12,7 +12,7 @@ We are grateful to the Editor and the two anonymous referees for constructive co
 
 Francesco Rentocchini is an employee of the European Commission. The views expressed here are purely his personal views and may not in any circumstances be regarded as stating an official position of the European Commission.
 
-**Joint responsibility**. We (the authors) take full joint responsibility for any omissions or errors in this replication repository.
+**Joint responsibility**. All of the authors take full joint responsibility for any omissions or errors in this replication repository.
 
 ## Data 
 

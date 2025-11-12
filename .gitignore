@@ -1,3 +1,9 @@
 temp
 data_for_analysis
 stata_packages
+/data/raw_data/Dati provinciali (IT1,151_1193_DF_DCCV_TAXDISOCCU1_UNT2020_7,1.0).csv
+/data/raw_data/data2estimate1.dta
+/data/raw_data/Dati provinciali (IT1,151_914_DF_DCCV_TAXDISOCCU1_8,1.0).csv
+/scripts/XX_build_DBs.do
+/Manuscript.docx
+/data/raw_data/data2estimate.dta

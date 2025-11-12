@@ -46,7 +46,6 @@ local phat = "p`hat'"
 * --------------------------------------------------
 use "${data_path}/data_for_analysis.dta", clear
 
-
 * --------------------------------------------------
 * Difference-in-Differences (DD) Estimation: Overall
 * --------------------------------------------------
@@ -110,7 +109,15 @@ esttab $y1 using "${output}/Table_02.${tab_fmt}", ///
                "N (Departments)") fmt(0 0 0 0 0)) ///
     addnotes("Notes. This table displays the average treatment on the treated coefficient using 2014-2020 data. Regressions are based on 2,029 department-year observations. Estimates include controls for the number of employees at t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Department, post treatement fixed effects are included in all specifications. Columns 2, 3, 5, 6, 8 and 9 also include university-by-post fixed effects. Regressions in columns 3, 6 and 9 are estimated using 1/(1-`phat'(x<sub>i</sub>)) to weight untreated observations and 1/`phat'(x<sub>i</sub>) otherwise. `phat'(x<sub>i</sub>) is the propensity score and is calculated controlling for the number of department research staff at time t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added, provincial unemployment rate and NUTS 1 regional fixed effects. Standard errors clustered at the department level are in parentheses. ") ///
     nogaps onecell ///
-    label ///
+    mtitle("New positions" ///
+		"New positions" ///
+		"New positions" ///
+        "New positions (excl. promotions)" ///
+        "New positions (excl. promotions)" ///
+        "New positions (excl. promotions)" ///
+		"Internal promotions" ///
+		"Internal promotions" ///
+        "Internal promotions") ///
     title("Table 2: Effect of the Department of Excellence Programme on University Faculty Recruitment: new positions and internal promotions") ///
     replace
 
@@ -140,7 +147,15 @@ esttab $y2 using "${output}/Table_03.${tab_fmt}", ///
                "N (Departments)") fmt(0 0 0 0 0)) ///
     addnotes("Notes. This table displays the average treatment on the treated coefficients using 2014-2020 data. Regressions are based on 2,029 department-year observations. Estimates include controls for the number of employees at t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Department, post treatment fixed effects are included in all specifications. Columns 2, 3, 5, 6, 8 and 9 also include university-by-post fixed effects. Regressions in columns 3, 6 and 9 are estimated using 1/(1-`phat'(x<sub>i</sub>)) to weight untreated observations and 1/`phat'(x<sub>i</sub>) otherwise. `phat'(x<sub>i</sub>) is the propensity score and is calculated controlling for the number of department research staff at time t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added, provincial unemployment rate and NUTS 1 regional fixed effects. Standard errors clustered at the department level are in parentheses") ///
     nogaps onecell ///
-    label ///
+    mtitle("Temporary" ///
+		"Temporary" ///
+		"Temporary" ///
+        "Tenure track" ///
+		"Tenure track" ///
+		"Tenure track" ///
+        "Tenured" ///
+		"Tenured" ///
+		"Tenured") ///
     title("Table 3 Effect of the Department of Excellence Programme on University Faculty Recruitment: temporary and permanent positions") ///
     replace
 
@@ -213,7 +228,15 @@ foreach var of global y {
                "N (Departments)") fmt(0 0 0 0 0)) ///
     addnotes("Notes. This table displays the average treatment on the treated coefficients for second tier departments using 2014-2020 data. Regressions are based on 2,029 department-year observations. Estimates include controls for the number of employees at t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Department, post treatment fixed effects are included in all specifications. Columns 2, 3, 5, 6, 8 and 9 also include university-by-post fixed effects. Regressions in columns 3, 6 and 9 are estimated using 1/(1-`phat'(x<sub>i</sub>)) to weight untreated observations and 1/`phat'(x<sub>i</sub>) otherwise. `phat'(x<sub>i</sub>) is the propensity score and is calculated controlling for the number of department research staff at time t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added, provincial unemployment rate and NUTS 1 regional fixed effects. Standard errors clustered at the department level are in parentheses. ") ///
     nogaps onecell ///
-    label ///
+    mtitle("New positions" ///
+		"New positions" ///
+		"New positions" ///
+        "New positions (excl. promotions)" ///
+        "New positions (excl. promotions)" ///
+        "New positions (excl. promotions)" ///
+		"Internal promotions" ///
+		"Internal promotions" ///
+        "Internal promotions") ///   
     title("Table 4: Effect of the Department of Excellence Programme on University Faculty Recruitment for second tier university departments: new positions and internal promotions") ///
     replace
 
@@ -242,7 +265,15 @@ foreach var of global y {
                "N (Departments)") fmt(0 0 0 0 0)) ///
     addnotes("Notes. This table displays the average treatment on the treated coefficients for second tier departments using 2014-2020 data. Regressions are based on 2,029 department-year observations. Estimates include controls for the number of employees at t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Department, post treatment fixed effects are included in all specifications. Columns 2, 3, 5, 6, 8 and 9 also include university-by-post fixed effects. Regressions in columns 3, 6 and 9 are estimated using 1/(1-`phat'(x<sub>i</sub>)) to weight untreated observations and 1/`phat'(x<sub>i</sub>) otherwise. `phat'(x<sub>i</sub>) is the propensity score and is calculated controlling for the number of department research staff at time t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added, provincial unemployment rate and NUTS 1 regional fixed effects. Standard errors clustered at the department level are in parentheses") ///
     nogaps onecell ///
-    label ///
+    mtitle("Temporary" ///
+		"Temporary" ///
+		"Temporary" ///
+        "Tenure track" ///
+		"Tenure track" ///
+		"Tenure track" ///
+        "Tenured" ///
+		"Tenured" ///
+		"Tenured") ///
     title("Table 5: Effect of the Department of Excellence Programme on University Faculty Recruitment for second tier university departments: temporary and permanent positions") ///
     replace
 

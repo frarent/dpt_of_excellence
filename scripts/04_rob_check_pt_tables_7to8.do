@@ -1,23 +1,3 @@
-/*==================================================================
-Author: Francesco Rentocchini
-Current Date: 21 April 2025
-Project Name: Department of Excellence Project
-
-Code Description:
-This script implements parallel trends checks using both DD and DDD 
-event study specifications. The first block evaluates conditional PT 
-(on covariates), while the second runs the test without conditioning.
-These are robustness checks to support identifying assumptions.
-
-Inputs:
-- db_robcheck.dta: Department-year panel data, pre-treatment only
-
-Outputs:
-- tables_RC07_PT.[format]: DD and DDD tables (conditional PT)
-- tables_RC08_UPT.[format]: DD and DDD tables (unconditional PT)
-==================================================================*/
-
-
 * --------------------------------------------------
 * Project: Beyond the Badge of Honour: The Effect of
 * the Italian (Department of) Excellence Initiative

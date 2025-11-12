@@ -232,21 +232,6 @@ label var unemp_rate "unemployment rate"
 quietly summarize treated, meanonly
 assert abs(r(mean) - 0.5103448) < 1e-6
 
-
-* --------------------------------------------------
-* Finalize and Save
-* --------------------------------------------------
-
-compress
-save "${data_path}/db_before_est.dta", replace
-
-
-* --------------------------------------------------
-* Database for Robustness Checks
-* --------------------------------------------------
-
-use "${data_path}/db_before_est.dta", clear
-
 cap est drop _all
 
 * Create post-treatment indicator for 2018–2020
@@ -283,4 +268,5 @@ label variable year "year"
 label variable id "id department"
 
 compress
-save "${data_path}/db_robcheck.dta", replace
+save "${data_path}/data_for_analysis.dta", replace
+

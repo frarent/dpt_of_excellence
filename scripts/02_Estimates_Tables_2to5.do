@@ -8,7 +8,7 @@
 * Purpose: Estimate DD and DDD effects of the Department of Excellence
 * programme on university staff recruitment outcomes.
 * 
-* Data inputs: ${data_path}/data_for_analysis.dta, including treatment
+* Data inputs: ${raw_data_path}/data_for_analysis.dta, including treatment
 * indicators (treated, post2), department IDs (id), university IDs
 * (uni_name_enc), covariates (lagi, dep_transfer_horizontal,
 * tot_premiale, VA_percap, unemp_rate), propensity score weights
@@ -44,7 +44,7 @@ local phat = "p`hat'"
 * --------------------------------------------------
 * Data Import: Loading raw data from external sources.
 * --------------------------------------------------
-use "${data_path}/data_for_analysis.dta", clear
+use "${raw_data_path}/data_for_analysis.dta", clear
 
 * --------------------------------------------------
 * Difference-in-Differences (DD) Estimation: Overall

@@ -7,7 +7,7 @@
 *
 * Code Description
 * - Purpose: Estimate SDID DD and DDD effects and produce figures/tables.
-* - Data inputs: ${data_path}/data_for_analysis.dta
+* - Data inputs: ${raw_data_path}/data_for_analysis.dta
 * - Expected outputs:
 *   - ${temp_path}/gr_<outcome>.gph (per-outcome graphs)
 *   - ${output}/Figure_01.png (combined figure)
@@ -31,7 +31,7 @@ global reps 500 // number of bootstrap replications
 * SDID DD ESTIMATES AND GRAPHS
 * --------------------------------------------------
 preserve
-	use "${data_path}/data_for_analysis.dta",clear
+	use "${raw_data_path}/data_for_analysis.dta",clear
 
 	label var new_position "New positions"
 	label var new_entry "New positions (excl. promotions)"
@@ -108,7 +108,7 @@ restore
 * SDID DDD ESTIMATES
 * --------------------------------------------------
 
-use "${data_path}/data_for_analysis.dta",clear
+use "${raw_data_path}/data_for_analysis.dta",clear
 
 
 

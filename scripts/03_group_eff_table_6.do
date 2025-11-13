@@ -9,7 +9,7 @@
 * - Purpose: Estimate fully interacted DDD models with contrasts on staff
 *   recruitment outcomes using inverse-probability weights and high-dim FE.
 *	report DDD contrasts in a table
-* - Data inputs: ${data_path}/data_for_analysis.dta
+* - Data inputs: ${raw_data_path}/data_for_analysis.dta
 * - Expected outputs: ${output}/Table_06.csv (custom CSV table with DDD
 *   contrasts, SEs, p-values, and N of departments)
 * --------------------------------------------------
@@ -24,7 +24,7 @@ global covar lagi dep_transfer_horizontal tot_premiale VA_percap ///
 global y new_position new_entry new_endogamia new_rtda ///
     new_rtdb new_ten_uni_all
 
-use "${data_path}/data_for_analysis.dta", clear
+use "${raw_data_path}/data_for_analysis.dta", clear
 
 * --------------------------------------------------
 * Fully Interacted DDD with Contrasts

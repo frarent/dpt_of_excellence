@@ -10,7 +10,7 @@
 *   scales funding to millions, orders variables, computes means/SDs for
 *   the full sample and key sub-samples, and exports an esttab table.
 * 
-*   Data inputs: ${data_path}/data_for_analysis.dta.
+*   Data inputs: ${raw_data_path}/data_for_analysis.dta.
 *   Expected outputs: ${output}/Table_01.${tab_fmt} (esttab table).
 * 
 * ====================================================================
@@ -19,7 +19,7 @@
 * Data Import: Load analysis dataset.
 * --------------------------------------------------
 
-use "${data_path}/data_for_analysis.dta", clear
+use "${raw_data_path}/data_for_analysis.dta", clear
 
 * --------------------------------------------------
 * Setup: Globals and locals for analysis.

@@ -8,7 +8,7 @@
 * Code Description
 * - Purpose: Check parallel-trend assumptions with DD models:
 *   (i) conditional on covariates and FEs; (ii) unconditional.
-* - Data inputs: ${data_path}/data_for_analysis.dta
+* - Data inputs: ${raw_data_path}/data_for_analysis.dta
 * - Expected outputs:
 *   - ${output}/Table_07.${tab_fmt} (conditional PT test)
 *   - ${output}/Table_08.${tab_fmt} (unconditional PT test)
@@ -38,7 +38,7 @@ local phat = "p`hat'"
 * Conditional parallel trends (WITH COVARIATES)
 * --------------------------------------------------
 
-use "${data_path}/data_for_analysis.dta", clear
+use "${raw_data_path}/data_for_analysis.dta", clear
 keep if year <= 2017
 
 cap est drop _all
@@ -101,7 +101,7 @@ esttab $y1 $y2 using "${output}/Table_07.${tab_fmt}", ///
 * Unconditional parallel trends test (NO COVARIATES)
 * --------------------------------------------------
 
-use "${data_path}/data_for_analysis.dta", clear
+use "${raw_data_path}/data_for_analysis.dta", clear
 keep if year >= 2014 & year <= 2017
 
 cap est drop _all

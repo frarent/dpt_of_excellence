@@ -22,7 +22,7 @@ global covar lagi dep_transfer_horizontal tot_premiale VA_percap unemp_rate
 
 global y new_position new_entry new_endogamia new_rtda new_rtdb new_ten_uni_all	
 
-global reps 2 // number of bootstrap replications
+global reps 500 // number of bootstrap replications
 
 
 

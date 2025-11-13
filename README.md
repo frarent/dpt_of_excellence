@@ -7,16 +7,6 @@ Please cite the above paper when using any of these programs.
 
 Authors: [Ugo Rizzo](https://docente.unife.it/docenti-en/ugo.rizzo?set_language=en), [Francesco Rentocchini](https://frarent.github.io/), [Marco Seeber](https://www.uia.no/english/about-uia/employees/marcos/index.html), [Laura Ramaciotti](https://docente.unife.it/docenti-en/laura.ramaciotti?set_language=en)
 
-## Acknowledgments
-We are grateful to the Editor and the two anonymous referees for constructive comments on the original paper.
-
-Francesco Rentocchini is an employee of the European Commission. The views expressed here are purely his personal views and may not in any circumstances be regarded as stating an official position of the European Commission.
-
-**Joint responsibility**. All of the authors take full joint responsibility for any omissions or errors in this replication repository.
-
-The `00_main.do` file builds on that provided by [Pietro Santoleri](https://pietrosantoleri.github.io/). We are indebted to Pietro for sharing the initial version with us. We have made some modifications to suit our needs and, where possible, to improve upon the already strong starting point. 
-Pietro - [Cotton](https://immich.ds218fr.synology.me/share/6AXByUvjCpv8mqCrCYYL1nXeVyUFeO-drISeWsGs69R6zpqUMhN9ZlwUb4K0Z2XG_wg) misses you very much. All errors and omissions are our own.
-
 ## Data 
 
 ### Data availability  
@@ -88,6 +78,16 @@ This will set up the environment and execute all other scripts to reproduce the 
 
 ### Variable Codebook
 The full variable codebook with variable name, label, storage type and their corresponding values and value labels is available [here](data/raw_data/)
+
+## Acknowledgments
+We are grateful to the Editor and the two anonymous referees for constructive comments on the original paper.
+
+Francesco Rentocchini is an employee of the European Commission. The views expressed here are purely his personal views and may not in any circumstances be regarded as stating an official position of the European Commission.
+
+**Joint responsibility**. All of the authors take full joint responsibility for any omissions or errors in this replication repository.
+
+The `00_main.do` file builds on that provided by [Pietro Santoleri](https://pietrosantoleri.github.io/). We are indebted to Pietro for sharing the initial version with us. We have made some modifications to suit our needs and, where possible, to improve upon the already strong starting point. 
+Pietro - [Cotton](https://immich.ds218fr.synology.me/share/6AXByUvjCpv8mqCrCYYL1nXeVyUFeO-drISeWsGs69R6zpqUMhN9ZlwUb4K0Z2XG_wg) misses you very much. All errors and omissions are our own.
 
 ## License
 ![CC-BY-NC](data/raw_data/cc-by-nc.png) The repository is under a CC-BY-NC license. Usage by commercial entities is allowed, but reselling it is not.

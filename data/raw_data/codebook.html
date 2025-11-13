@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+<title>Codebook</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+.line-wrap {
+    white-space: normal;
+    word-wrap: break-word;
+}
+body {
+    max-width:1200px;
+    margin:auto;
+}
+</style>
+<body class="w3-white">
+<div class="w3-main">
+<div class="w3-top" style="max-width:1200px">
+<div class="w3-container w3-green">
+<h1>Codebook</h1>
+</div>
+</div><br><br><br>
+<div id="file1" class="w3-container w3-light-grey w3-border-right w3-border-left w3-border-green line-wrap">
+<h3><strong>data_for_analysis.dta</strong>: Italian Department of Excellence panel data 2013-2020</h3>
+</div>
+<div id="desc1" class="w3-container w3-border  w3-pale-green">
+<p><strong>Descriptives</strong></p>
+<table class="w3-table w3-card w3-hoverable w3-bordered w3-border w3-small w3-white">
+<tr><th>Observations</th>
+<td>         2,320</td></tr>
+<tr><th>variables</th>
+<td>            18</td></tr>
+<tr><th>Last saved</th>
+<td>
+12 Nov 2025 18:01</td></tr>
+<tr><th>data signature</th>
+<td>
+-
+</td></tr>
+</table>
+<br>
+</div>
+<div id="vars1" class="w3-container w3-border  w3-pale-green">
+<p><strong>Variables</strong></p>
+<button onclick="acc('year_1')" class="line-wrap w3-container w3-button w3-block w3-border w3-left-align w3-white w3-leftbar w3-border-green w3-hover-green">
+<strong>year</strong>: Year
+</button>
+<div id="year_1" class="w3-container w3-border w3-hide w3-white">
+<p><strong>summary</strong></p>
+<table class="w3-table w3-hoverable w3-card w3-bordered w3-border w3-small w3-white">
+<tr><th>type</th><td>numeric (int)</td></tr>
+<tr><th>missing values</th><td>             0</td></tr>
+<tr><th>non-missing values</th><td>         2,320</td></tr>
+<tr><th>distinct non-missing values</th><td>             8</td></tr>
+</table>
+<p><strong>table</strong></p>
+<table class="w3-table w3-card w3-hoverable w3-bordered w3-border w3-small w3-white">
+<tr><th>value</th><th>label</th><th>frequency</th></tr>
+<tr><td>2013</td><td></td><td>           290</td></tr>
+<tr><td>2014</td><td></td><td>           290</td></tr>
+<tr><td>2015</td><td></td><td>           290</td></tr>
+<tr><td>2016</td><td></td><td>           290</td></tr>
+<tr><td>2017</td><td></td><td>           290</td></tr>
+<tr><td>2018</td><td></td><td>           290</td></tr>
+<tr><td>2019</td><td></td><td>           290</td></tr>
+<tr><td>2020</td><td></td><td>           290</td></tr>
+</table>
+<br>
+</div>
+<button onclick="acc('unemp_rate_1')" class="line-wrap w3-container w3-button w3-block w3-border w3-left-align w3-white w3-leftbar w3-border-green w3-hover-green">
+<strong>unemp_rate</strong>: Unemployment rate at the provincial level (NUTS 3 region)
+</button>
+<div id="unemp_rate_1" class="w3-container w3-border w3-hide w3-white">
+<p><strong>summary</strong></p>
+<table class="w3-table w3-hoverable w3-card w3-bordered w3-border w3-small w3-white">
+<tr><th>type</th><td>numeric (float)</td></tr>
+<tr><th>missing values</th><td>             0</td></tr>
+<tr><th>non-missing values</th><td>         2,320</td></tr>
+<tr><th>distinct non-missing values</th><td>           312</td></tr>
+<tr><th>minimum</th><td> 3.014194</td></tr>
+<tr><th>1st quartile</th><td> 6.594512</td></tr>
+<tr><th>median</th><td> 8.341553</td></tr>
+<tr><th>3rd quartile</th><td> 10.70791</td></tr>
+<tr><th>maximum</th><td> 27.80767</td></tr>
+</table>
+<br>
+</div>
+<button onclick="acc('id_1')" class="line-wrap w3-container w3-button w3-block w3-border w3-left-align w3-white w3-leftbar w3-border-green w3-hover-green">
+<strong>id</strong>: Department identification number
+</button>
+<div id="id_1" class="w3-container w3-border w3-hide w3-white">
+<p><strong>summary</strong></p>
+<table class="w3-table w3-hoverable w3-card w3-bordered w3-border w3-small w3-white">
+<tr><th>type</th><td>numeric (int)</td></tr>
+<tr><th>missing values</th><td>             0</td></tr>
+<tr><th>non-missing values</th><td>         2,320</td></tr>
+<tr><th>distinct non-missing values</th><td>           290</td></tr>
+<tr><th>minimum</th><td>        4</td></tr>
+<tr><th>1st quartile</th><td>      365</td></tr>
+<tr><th>median</th><td>      856</td></tr>
+<tr><th>3rd quartile</th><td>     1288</td></tr>
+<tr><th>maximum</th><td>     1580</td></tr>
+</table>
+<br>
+</div>
+<button onclick="acc('new_position_1')" class="line-wrap w3-container w3-button w3-block w3-border w3-left-align w3-white w3-leftbar w3-border-green w3-hover-green">
+<strong>new_position</strong>: # of new positions in the department
+</button>
+<div id="new_position_1" class="w3-container w3-border w3-hide w3-white">
+<p><strong>summary</strong></p>
+<table class="w3-table w3-hoverable w3-card w3-bordered w3-border w3-small w3-white">
+<tr><th>type</th><td>numeric (byte)</td></tr>
+<tr><th>missing values</th><td>             0</td></tr>
+<tr><th>non-missing values</th><td>         2,320</td></tr>
+<tr><th>distinct non-missing values</th><td>            37</td></tr>
+<tr><th>minimum</th><td>        0</td></tr>
+<tr><th>1st quartile</th><td>        4</td></tr>
+<tr><th>median</th><td>        6</td></tr>
+<tr><th>3rd quartile</th><td>       10</td></tr>
+<tr><th>maximum</th><td>       43</td></tr>
+</table>
+<br>
+</div>
+<button onclick="acc('new_rtda_1')" class="line-wrap w3-container w3-button w3-block w3-border w3-left-align w3-white w3-leftbar w3-border-green w3-hover-green">
+<strong>new_rtda</strong>: # of new three-year fixed-term research positions (RTD-A in the Italian system)
+</button>
+<div id="new_rtda_1" class="w3-container w3-border w3-hide w3-white">
+<p><strong>summary</strong></p>
+<table class="w3-table w3-hoverable w3-card w3-bordered w3-border w3-small w3-white">
+<tr><th>type</th><td>numeric (double)</td></tr>
+<tr><th>missing values</th><td>             0</td></tr>
+<tr><th>non-missing values</th><td>         2,320</td></tr>
+<tr><th>distinct non-missing values</th><td>            24</td></tr>
+<tr><th>minimum</th><td>        0</td></tr>
+<tr><th>1st quartile</th><td>        0</td></tr>
+<tr><th>median</th><td>        1</td></tr>
+<tr><th>3rd quartile</th><td>        2</td></tr>
+<tr><th>maximum</th><td>       15</td></tr>
+</table>
+<br>
+</div>
+<button onclick="acc('new_rtdb_1')" class="line-wrap w3-container w3-button w3-block w3-border w3-left-align w3-white w3-leftbar w3-border-green w3-hover-green">
+<strong>new_rtdb</strong>: # of new three-year tenure-track research positions (RTD-B in the Italian system
+</button>
+<div id="new_rtdb_1" class="w3-container w3-border w3-hide w3-white">
+<p><strong>summary</strong></p>
+<table class="w3-table w3-hoverable w3-card w3-bordered w3-border w3-small w3-white">
+<tr><th>type</th><td>numeric (double)</td></tr>
+<tr><th>missing values</th><td>             0</td></tr>
+<tr><th>non-missing values</th><td>         2,320</td></tr>
+<tr><th>distinct non-missing values</th><td>            14</td></tr>
+<tr><th>minimum</th><td>        0</td></tr>
+<tr><th>1st quartile</th><td>        0</td></tr>
+<tr><th>median</th><td>        1</td></tr>
+<tr><th>3rd quartile</th><td>        2</td></tr>
+<tr><th>maximum</th><td>       12</td></tr>
+</table>
+<br>
+</div>
+<button onclick="acc('new_entry_1')" class="line-wrap w3-container w3-button w3-block w3-border w3-left-align w3-white w3-leftbar w3-border-green w3-hover-green">
+<strong>new_entry</strong>: # of positions in the department excluding internal promotions
+</button>
+<div id="new_entry_1" class="w3-container w3-border w3-hide w3-white">
+<p><strong>summary</strong></p>
+<table class="w3-table w3-hoverable w3-card w3-bordered w3-border w3-small w3-white">
+<tr><th>type</th><td>numeric (byte)</td></tr>
+<tr><th>missing values</th><td>             0</td></tr>
+<tr><th>non-missing values</th><td>         2,320</td></tr>
+<tr><th>distinct non-missing values</th><td>            17</td></tr>
+<tr><th>minimum</th><td>        0</td></tr>
+<tr><th>1st quartile</th><td>        1</td></tr>
+<tr><th>median</th><td>        2</td></tr>
+<tr><th>3rd quartile</th><td>        4</td></tr>
+<tr><th>maximum</th><td>       16</td></tr>
+</table>
+<br>
+</div>
+<button onclick="acc('new_ten_uni_all_1')" class="line-wrap w3-container w3-button w3-block w3-border w3-left-align w3-white w3-leftbar w3-border-green w3-hover-green">
+<strong>new_ten_uni_all</strong>: # of new tenured positions, i.e. Associate or Full Professorships
+</button>
+<div id="new_ten_uni_all_1" class="w3-container w3-border w3-hide w3-white">
+<p><strong>summary</strong></p>
+<table class="w3-table w3-hoverable w3-card w3-bordered w3-border w3-small w3-white">
+<tr><th>type</th><td>numeric (byte)</td></tr>
+<tr><th>missing values</th><td>             0</td></tr>
+<tr><th>non-missing values</th><td>         2,320</td></tr>
+<tr><th>distinct non-missing values</th><td>             9</td></tr>
+</table>
+<p><strong>table</strong></p>
+<table class="w3-table w3-card w3-hoverable w3-bordered w3-border w3-small w3-white">
+<tr><th>value</th><th>label</th><th>frequency</th></tr>
+<tr><td>0</td><td></td><td>         1,188</td></tr>
+<tr><td>1</td><td></td><td>           685</td></tr>
+<tr><td>2</td><td></td><td>           280</td></tr>
+<tr><td>3</td><td></td><td>           120</td></tr>
+<tr><td>4</td><td></td><td>            27</td></tr>
+<tr><td>5</td><td></td><td>             9</td></tr>
+<tr><td>6</td><td></td><td>             8</td></tr>
+<tr><td>7</td><td></td><td>             2</td></tr>
+<tr><td>14</td><td></td><td>             1</td></tr>
+</table>
+<br>
+</div>
+<button onclick="acc('new_endogamia_1')" class="line-wrap w3-container w3-button w3-block w3-border w3-left-align w3-white w3-leftbar w3-border-green w3-hover-green">
+<strong>new_endogamia</strong>: # of new positions resulting from internal promotions
+</button>
+<div id="new_endogamia_1" class="w3-container w3-border w3-hide w3-white">
+<p><strong>summary</strong></p>
+<table class="w3-table w3-hoverable w3-card w3-bordered w3-border w3-small w3-white">
+<tr><th>type</th><td>numeric (byte)</td></tr>
+<tr><th>missing values</th><td>             0</td></tr>
+<tr><th>non-missing values</th><td>         2,320</td></tr>
+<tr><th>distinct non-missing values</th><td>            26</td></tr>
+<tr><th>minimum</th><td>        0</td></tr>
+<tr><th>1st quartile</th><td>        1</td></tr>
+<tr><th>median</th><td>        3</td></tr>
+<tr><th>3rd quartile</th><td>        6</td></tr>
+<tr><th>maximum</th><td>       39</td></tr>
+</table>
+<br>
+</div>
+<button onclick="acc('dep_transfer_horizontal_1')" class="line-wrap w3-container w3-button w3-block w3-border w3-left-align w3-white w3-leftbar w3-border-green w3-hover-green">
+<strong>dep_transfer_horizontal</strong>: # of researchers transferred from other departments within the same university
+</button>
+<div id="dep_transfer_horizontal_1" class="w3-container w3-border w3-hide w3-white">
+<p><strong>summary</strong></p>
+<table class="w3-table w3-hoverable w3-card w3-bordered w3-border w3-small w3-white">
+<tr><th>type</th><td>numeric (int)</td></tr>
+<tr><th>missing values</th><td>             0</td></tr>
+<tr><th>non-missing values</th><td>         2,320</td></tr>
+<tr><th>distinct non-missing values</th><td>            48</td></tr>
+<tr><th>minimum</th><td>        0</td></tr>
+<tr><th>1st quartile</th><td>        0</td></tr>
+<tr><th>median</th><td>        0</td></tr>
+<tr><th>3rd quartile</th><td>        0</td></tr>
+<tr><th>maximum</th><td>      216</td></tr>
+</table>
+<br>
+</div>
+<button onclick="acc('VA_percap_1')" class="line-wrap w3-container w3-button w3-block w3-border w3-left-align w3-white w3-leftbar w3-border-green w3-hover-green">
+<strong>VA_percap</strong>: Per capita value added at the provincial level (NUTS 3 region in 10,000 euros)
+</button>
+<div id="VA_percap_1" class="w3-container w3-border w3-hide w3-white">
+<p><strong>summary</strong></p>
+<table class="w3-table w3-hoverable w3-card w3-bordered w3-border w3-small w3-white">
+<tr><th>type</th><td>numeric (double)</td></tr>
+<tr><th>missing values</th><td>             0</td></tr>
+<tr><th>non-missing values</th><td>         2,320</td></tr>
+<tr><th>distinct non-missing values</th><td>           312</td></tr>
+<tr><th>minimum</th><td> 1.3299218</td></tr>
+<tr><th>1st quartile</th><td> 2.5034745</td></tr>
+<tr><th>median</th><td> 2.8932997</td></tr>
+<tr><th>3rd quartile</th><td> 3.3857771</td></tr>
+<tr><th>maximum</th><td> 5.0330326</td></tr>
+</table>
+<br>
+</div>
+<button onclick="acc('tot_premiale_1')" class="line-wrap w3-container w3-button w3-block w3-border w3-left-align w3-white w3-leftbar w3-border-green w3-hover-green">
+<strong>tot_premiale</strong>: Competitive research funding received by the university based on VQR (euros)
+</button>
+<div id="tot_premiale_1" class="w3-container w3-border w3-hide w3-white">
+<p><strong>summary</strong></p>
+<table class="w3-table w3-hoverable w3-card w3-bordered w3-border w3-small w3-white">
+<tr><th>type</th><td>numeric (double)</td></tr>
+<tr><th>missing values</th><td>             5</td></tr>
+<tr><th>non-missing values</th><td>         2,315</td></tr>
+<tr><th>distinct non-missing values</th><td>           389</td></tr>
+<tr><th>minimum</th><td>   .446167</td></tr>
+<tr><th>1st quartile</th><td> 21.628851</td></tr>
+<tr><th>median</th><td> 38.471661</td></tr>
+<tr><th>3rd quartile</th><td>  70.71728</td></tr>
+<tr><th>maximum</th><td> 127.70748</td></tr>
+</table>
+<br>
+</div>
+<button onclick="acc('treated_1')" class="line-wrap w3-container w3-button w3-block w3-border w3-left-align w3-white w3-leftbar w3-border-green w3-hover-green">
+<strong>treated</strong>: Treated group: departments that received Department of Excellence funds
+</button>
+<div id="treated_1" class="w3-container w3-border w3-hide w3-white">
+<p><strong>summary</strong></p>
+<table class="w3-table w3-hoverable w3-card w3-bordered w3-border w3-small w3-white">
+<tr><th>type</th><td>numeric (byte)</td></tr>
+<tr><th>missing values</th><td>             0</td></tr>
+<tr><th>non-missing values</th><td>         2,320</td></tr>
+<tr><th>distinct non-missing values</th><td>             2</td></tr>
+</table>
+<p><strong>table</strong></p>
+<table class="w3-table w3-card w3-hoverable w3-bordered w3-border w3-small w3-white">
+<tr><th>value</th><th>label</th><th>frequency</th></tr>
+<tr><td>0</td><td></td><td>         1,136</td></tr>
+<tr><td>1</td><td></td><td>         1,184</td></tr>
+</table>
+<br>
+</div>
+<button onclick="acc('LOWdep_1')" class="line-wrap w3-container w3-button w3-block w3-border w3-left-align w3-white w3-leftbar w3-border-green w3-hover-green">
+<strong>LOWdep</strong>: Second-tier departments: ISPD score below the median
+</button>
+<div id="LOWdep_1" class="w3-container w3-border w3-hide w3-white">
+<p><strong>summary</strong></p>
+<table class="w3-table w3-hoverable w3-card w3-bordered w3-border w3-small w3-white">
+<tr><th>type</th><td>numeric (byte)</td></tr>
+<tr><th>missing values</th><td>             0</td></tr>
+<tr><th>non-missing values</th><td>         2,320</td></tr>
+<tr><th>distinct non-missing values</th><td>             2</td></tr>
+</table>
+<p><strong>table</strong></p>
+<table class="w3-table w3-card w3-hoverable w3-bordered w3-border w3-small w3-white">
+<tr><th>value</th><th>label</th><th>frequency</th></tr>
+<tr><td>0</td><td></td><td>         1,192</td></tr>
+<tr><td>1</td><td></td><td>         1,128</td></tr>
+</table>
+<br>
+</div>
+<button onclick="acc('lagi_1')" class="line-wrap w3-container w3-button w3-block w3-border w3-left-align w3-white w3-leftbar w3-border-green w3-hover-green">
+<strong>lagi</strong>: # of researchers in the department in year t-1
+</button>
+<div id="lagi_1" class="w3-container w3-border w3-hide w3-white">
+<p><strong>summary</strong></p>
+<table class="w3-table w3-hoverable w3-card w3-bordered w3-border w3-small w3-white">
+<tr><th>type</th><td>numeric (float)</td></tr>
+<tr><th>missing values</th><td>           290</td></tr>
+<tr><th>non-missing values</th><td>         2,030</td></tr>
+<tr><th>distinct non-missing values</th><td>           139</td></tr>
+<tr><th>minimum</th><td>       16</td></tr>
+<tr><th>1st quartile</th><td>       49</td></tr>
+<tr><th>median</th><td>       61</td></tr>
+<tr><th>3rd quartile</th><td>       79</td></tr>
+<tr><th>maximum</th><td>      236</td></tr>
+</table>
+<br>
+</div>
+<button onclick="acc('uni_name_enc_1')" class="line-wrap w3-container w3-button w3-block w3-border w3-left-align w3-white w3-leftbar w3-border-green w3-hover-green">
+<strong>uni_name_enc</strong>: University name
+</button>
+<div id="uni_name_enc_1" class="w3-container w3-border w3-hide w3-white">
+<p><strong>summary</strong></p>
+<table class="w3-table w3-hoverable w3-card w3-bordered w3-border w3-small w3-white">
+<tr><th>type</th><td>numeric (byte)</td></tr>
+<tr><th>missing values</th><td>             0</td></tr>
+<tr><th>non-missing values</th><td>         2,320</td></tr>
+<tr><th>distinct non-missing values</th><td>            49</td></tr>
+</table>
+<p><strong>table</strong></p>
+<table class="w3-table w3-card w3-hoverable w3-bordered w3-border w3-small w3-white">
+<tr><th>value</th><th>label</th><th>frequency</th></tr>
+<tr><td>1</td><td>Bari</td><td>            24</td></tr>
+<tr><td>2</td><td>Bari Politecnico</td><td>             8</td></tr>
+<tr><td>3</td><td>Bergamo</td><td>             8</td></tr>
+<tr><td>4</td><td>Bologna</td><td>           208</td></tr>
+<tr><td>5</td><td>Brescia</td><td>            32</td></tr>
+<tr><td>6</td><td>Cagliari</td><td>             8</td></tr>
+<tr><td>7</td><td>Calabria</td><td>            40</td></tr>
+<tr><td>8</td><td>Cassino</td><td>             8</td></tr>
+<tr><td>9</td><td>Catania</td><td>            16</td></tr>
+<tr><td>10</td><td>Catanzaro</td><td>             8</td></tr>
+<tr><td>11</td><td>Chieti e Pescara</td><td>            32</td></tr>
+<tr><td>12</td><td>Ferrara</td><td>            56</td></tr>
+<tr><td>13</td><td>Firenze</td><td>            96</td></tr>
+<tr><td>14</td><td>Foggia</td><td>            16</td></tr>
+<tr><td>15</td><td>Genova</td><td>            24</td></tr>
+<tr><td>16</td><td>Insubria</td><td>             8</td></tr>
+<tr><td>17</td><td>L'Aquila</td><td>             8</td></tr>
+<tr><td>18</td><td>Macerata</td><td>            24</td></tr>
+<tr><td>19</td><td>Marche</td><td>            64</td></tr>
+<tr><td>20</td><td>Milano</td><td>           120</td></tr>
+<tr><td>21</td><td>Milano Bicocca</td><td>            64</td></tr>
+<tr><td>22</td><td>Milano Politecnico</td><td>            64</td></tr>
+<tr><td>23</td><td>Modena e Reggio Emilia</td><td>            56</td></tr>
+<tr><td>24</td><td>Napoli Federico II</td><td>           104</td></tr>
+<tr><td>25</td><td>Napoli II</td><td>            24</td></tr>
+<tr><td>26</td><td>Napoli L'Orientale</td><td>             8</td></tr>
+<tr><td>27</td><td>Napoli Parthenope</td><td>            16</td></tr>
+<tr><td>28</td><td>Padova</td><td>           216</td></tr>
+<tr><td>29</td><td>Pavia</td><td>            72</td></tr>
+<tr><td>30</td><td>Piemonte Orientale</td><td>            40</td></tr>
+<tr><td>31</td><td>Pisa</td><td>            80</td></tr>
+<tr><td>32</td><td>Reggio Calabria</td><td>             8</td></tr>
+<tr><td>33</td><td>Roma La Sapienza</td><td>           136</td></tr>
+<tr><td>34</td><td>Roma Tor Vergata</td><td>            32</td></tr>
+<tr><td>35</td><td>Roma Tre</td><td>            48</td></tr>
+<tr><td>36</td><td>Salento</td><td>             8</td></tr>
+<tr><td>37</td><td>Salerno</td><td>            16</td></tr>
+<tr><td>38</td><td>Sannio</td><td>             8</td></tr>
+<tr><td>39</td><td>Sassari</td><td>             8</td></tr>
+<tr><td>40</td><td>Siena</td><td>            72</td></tr>
+<tr><td>41</td><td>Siena Stranieri</td><td>             8</td></tr>
+<tr><td>42</td><td>Teramo</td><td>             8</td></tr>
+<tr><td>43</td><td>Torino</td><td>           176</td></tr>
+<tr><td>44</td><td>Torino Politecnico</td><td>            56</td></tr>
+<tr><td>45</td><td>Trieste</td><td>            32</td></tr>
+<tr><td>46</td><td>Trieste SISSA</td><td>            16</td></tr>
+<tr><td>47</td><td>Tuscia</td><td>            24</td></tr>
+<tr><td>48</td><td>Venezia Cà Foscari</td><td>            56</td></tr>
+<tr><td>49</td><td>Verona</td><td>            56</td></tr>
+</table>
+<br>
+</div>
+<button onclick="acc('w_ipw_pre_1')" class="line-wrap w3-container w3-button w3-block w3-border w3-left-align w3-white w3-leftbar w3-border-green w3-hover-green">
+<strong>w_ipw_pre</strong>: Propensity score weight, see the paper for details
+</button>
+<div id="w_ipw_pre_1" class="w3-container w3-border w3-hide w3-white">
+<p><strong>summary</strong></p>
+<table class="w3-table w3-hoverable w3-card w3-bordered w3-border w3-small w3-white">
+<tr><th>type</th><td>numeric (float)</td></tr>
+<tr><th>missing values</th><td>             0</td></tr>
+<tr><th>non-missing values</th><td>         2,320</td></tr>
+<tr><th>distinct non-missing values</th><td>           290</td></tr>
+<tr><th>minimum</th><td>   .66236</td></tr>
+<tr><th>1st quartile</th><td> .9023152</td></tr>
+<tr><th>median</th><td> .9940548</td></tr>
+<tr><th>3rd quartile</th><td> 1.075905</td></tr>
+<tr><th>maximum</th><td> 1.838115</td></tr>
+</table>
+<br>
+</div>
+<button onclick="acc('post2_1')" class="line-wrap w3-container w3-button w3-block w3-border w3-left-align w3-white w3-leftbar w3-border-green w3-hover-green">
+<strong>post2</strong>: Years during which the Department is treated, i.e. 2018 onwards
+</button>
+<div id="post2_1" class="w3-container w3-border w3-hide w3-white">
+<p><strong>summary</strong></p>
+<table class="w3-table w3-hoverable w3-card w3-bordered w3-border w3-small w3-white">
+<tr><th>type</th><td>numeric (byte)</td></tr>
+<tr><th>missing values</th><td>           290</td></tr>
+<tr><th>non-missing values</th><td>         2,030</td></tr>
+<tr><th>distinct non-missing values</th><td>             2</td></tr>
+</table>
+<p><strong>table</strong></p>
+<table class="w3-table w3-card w3-hoverable w3-bordered w3-border w3-small w3-white">
+<tr><th>value</th><th>label</th><th>frequency</th></tr>
+<tr><td>0</td><td></td><td>         1,160</td></tr>
+<tr><td>1</td><td></td><td>           870</td></tr>
+<tr><td>.</td><td></td><td>           290</td></tr>
+</table>
+<br>
+</div>
+<br>
+</div>
+<div class="w3-container w3-green">
+<p>Codebook created on 13 Nov 2025 06:53:43</p>
+</div>
+</div>
+<script>
+    function acc(id) {
+            var x = document.getElementById(id);
+            if (x.className.indexOf("w3-show") == -1) {
+                    x.className += " w3-show";
+            } else {
+                    x.className = x.className.replace(" w3-show", "");
+            }
+    }
+function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+}
+function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+}
+    </script>
+</body>
+</html>

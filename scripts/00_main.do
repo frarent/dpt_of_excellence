@@ -14,7 +14,7 @@ clear all
 *=============================================================================*
 
 // Download raw data (0 for no; 1 for yes)
-global downloads 0
+global downloads 1
 
 // Run main analysis script (0 for no; 1 for yes)
 global analysis 1
@@ -45,7 +45,8 @@ local packages  blindschemes /// plot scheme
 	estout /// table exporting tool
 	distinct /// num unique observations
 	coefplot /// plots of coefficients
-	codebookout // exports variable codebook
+	codebookout /// exports variable codebook
+	htmlcb //exports variable codebook
 	
 if $downloads == 1 {
 	foreach name of local packages  {
@@ -149,8 +150,9 @@ if $robcheck_long == 1 {
 }
 
 
-// once dataset is ready, this saves name, label, storage type of all the variables in the existing dataset in memory to Excel
-codebookout "$raw_data_path/codebook.xlsx", replace 
+// once dataset is ready, this saves name, label, storage type 
+// of all the variables in the existing dataset in memory to Excel
+htmlcb, saving("$raw_data_path/codebook.html") replace
 
 * End log
 di "End date and time: $S_DATE $S_TIME"

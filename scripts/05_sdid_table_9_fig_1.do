@@ -22,7 +22,7 @@ global covar lagi dep_transfer_horizontal tot_premiale VA_percap unemp_rate
 
 global y new_position new_entry new_endogamia new_rtda new_rtdb new_ten_uni_all	
 
-global reps 1000 // number of bootstrap replications
+global reps 500 // number of bootstrap replications
 
 
 
@@ -30,71 +30,79 @@ global reps 1000 // number of bootstrap replications
 * --------------------------------------------------
 * SDID DD ESTIMATES AND GRAPHS
 * --------------------------------------------------
+preserve
+	use "${data_path}/data_for_analysis.dta",clear
 
-use "${data_path}/data_for_analysis.dta",clear
-
-
-* Generate treatment indicator from 2018 onward
-gen treat_from2018 = treated
-replace treat_from2018 = 0 if treated == 1 & year < 2018
-
-* Keep relevant years and variables
-keep id year treat_from2018 $y $covar
-keep if year > 2013
-
-* Drop unbalanced panels due to missing vars
-egen flag_miss = rowmiss($y $covar treat_from2018)
-bysort id: egen flag_miss2 = total(flag_miss)
-drop if flag_miss2 == 1
-drop flag_miss*
-
-* Estimate SDID and generate graphs
-foreach var of global y {
-	set seed 150749
-    sdid `var' id year treat_from2018, ///
-        vce(bootstrap) covariates($covar) ///
-        reps(${reps}) seed(123) ///
-        graph
-
-    matrix A = e(series)
-    matrix w = e(lambda)
-    matrix w2 = w[1..4,1]
-    matrix rownames A = 2014 2015 2016 2017 2018 2019 2020
-    matrix rownames w2 = 2014 2015 2016 2017
-    coefplot (matrix(A[,2]), lpattern("dash") label("Control")) ///
-        (matrix(A[,3]), label("Treated")) ///
-        (matrix(w2[,1]), recast(bar) color(%30) label("Lambda weights")), ///
-        vertical nooffsets recast(line) xline(4.5) ///
-        ytitle("`: variable label `var''", size(vsmall)) ///
-        legend(rows(1) pos(6)) ///
-        note( "ATT = `: display %-5.3f e(ATT)'" ///
-		"SE = [`: display %-5.3f e(se)']", span size(.2cm))
-
-    graph save "${temp_path}/gr_`var'.gph", replace
-}
+	label var new_position "New positions"
+	label var new_entry "New positions (excl. promotions)"
+	label var new_endogamia "Internal promotions"
+	label var new_rtda "Temporary"
+	label var new_rtdb "Tenure track"
+	label var new_ten_uni_all "Tenured"
 
 
-* --------------------------------------------------
-* Combined Graph
-* --------------------------------------------------
+	* Generate treatment indicator from 2018 onward
+	gen treat_from2018 = treated
+	replace treat_from2018 = 0 if treated == 1 & year < 2018
+
+	* Keep relevant years and variables
+	keep id year treat_from2018 $y $covar
+	keep if year > 2013
+
+	* Drop unbalanced panels due to missing vars
+	egen flag_miss = rowmiss($y $covar treat_from2018)
+	bysort id: egen flag_miss2 = total(flag_miss)
+	drop if flag_miss2 == 1
+	drop flag_miss*
+
+	* Estimate SDID and generate graphs
+	foreach var of global y {
+		set seed 150749
+		sdid `var' id year treat_from2018, ///
+			vce(bootstrap) covariates($covar) ///
+			reps(${reps}) seed(123) ///
+			graph
+
+		matrix A = e(series)
+		matrix w = e(lambda)
+		matrix w2 = w[1..4,1]
+		matrix rownames A = 2014 2015 2016 2017 2018 2019 2020
+		matrix rownames w2 = 2014 2015 2016 2017
+		coefplot (matrix(A[,2]), lpattern("dash") label("Control")) ///
+			(matrix(A[,3]), label("Treated")) ///
+			(matrix(w2[,1]), recast(bar) color(%30) label("Lambda weights")), ///
+			vertical nooffsets recast(line) xline(4.5) ///
+			ytitle("`: variable label `var''", size(vsmall)) ///
+			legend(rows(1) pos(6)) ///
+			note( "ATT = `: display %-5.3f e(ATT)'" ///
+			"SE = [`: display %-5.3f e(se)']", span size(.2cm))
+
+		graph save "${temp_path}/gr_`var'.gph", replace
+	}
 
 
-* All outcomes (combined)
-grc1leg "${temp_path}/gr_new_position.gph" ///
-    "${temp_path}/gr_new_entry.gph" ///
-    "${temp_path}/gr_new_endogamia.gph" ///
-    "${temp_path}/gr_new_rtda.gph" ///
-    "${temp_path}/gr_new_rtdb.gph" ///
-    "${temp_path}/gr_new_ten_uni_all.gph", ///
-    cols(2) imargin(1 1 1) xcommon ///
-    legendfrom("${temp_path}/gr_new_position.gph") ///
-    ring(1) position(6) ///
-	note("Synthetic Difference-in-Difference estimator (Arkhangelsky et al., 2021). Estimates include controls for the number of employees at t-1, the number of staff transferred between departments," ///
-	"university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Lambda weights are shown in grey and are defined as optimized time weights assigned" ///
-	"to control units to construct the synthetic control that minimize the differences with the treated unit during the pre-treatment period. Standard errors are based on 1000 bootstrap replications. ", span size(.15cm))
+	* --------------------------------------------------
+	* Combined Graph
+	* --------------------------------------------------
 
-graph export "${output}/Figure_01.png", replace width(10000)
 
+	* All outcomes (combined)
+	grc1leg "${temp_path}/gr_new_position.gph" ///
+		"${temp_path}/gr_new_entry.gph" ///
+		"${temp_path}/gr_new_endogamia.gph" ///
+		"${temp_path}/gr_new_rtda.gph" ///
+		"${temp_path}/gr_new_rtdb.gph" ///
+		"${temp_path}/gr_new_ten_uni_all.gph", ///
+		cols(2) imargin(1 1 1) xcommon ///
+		legendfrom("${temp_path}/gr_new_position.gph") ///
+		ring(1) position(6) ///
+		note("Synthetic Difference-in-Difference estimator (Arkhangelsky et al., 2021). Estimates include controls for the number of employees at t-1, the number of staff transferred between departments," ///
+		"university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Lambda weights are shown in grey and are defined as optimized time weights assigned" ///
+		"to control units to construct the synthetic control that minimize the differences with the treated unit during the pre-treatment period. Standard errors are based on 1000 bootstrap replications. ", span size(.15cm))
+
+	graph export "${output}/Figure_01.png", replace width(10000)
+
+restore
 
 * --------------------------------------------------
 * SDID DDD ESTIMATES

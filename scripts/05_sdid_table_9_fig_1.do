@@ -98,7 +98,7 @@ preserve
 		ring(1) position(6) ///
 		note("Synthetic Difference-in-Difference estimator (Arkhangelsky et al., 2021). Estimates include controls for the number of employees at t-1, the number of staff transferred between departments," ///
 		"university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Lambda weights are shown in grey and are defined as optimized time weights assigned" ///
-		"to control units to construct the synthetic control that minimize the differences with the treated unit during the pre-treatment period. Standard errors are based on 1000 bootstrap replications. ", span size(.15cm))
+		"to control units to construct the synthetic control that minimize the differences with the treated unit during the pre-treatment period. Standard errors are based on 500 bootstrap replications. ", span size(.15cm))
 
 	graph export "${output}/Figure_01.png", replace width(10000)
 
@@ -152,8 +152,7 @@ foreach var of global y {
 
     * Compute DDD contrast
     local att_ddd = (`att_low' - `att_high')
-    local se_ddd  = sqrt(`se_low'^2 + `se_high'^2)
-    local z_ddd   = `att_ddd'/`se_ddd'
+1    local z_ddd   = `att_ddd'/`se_ddd'
     local p_ddd   = 2*(1 - normal(abs(`z_ddd')))
 
     matrix A[1,`i'] = `att_ddd'
@@ -182,6 +181,6 @@ esttab matrix(A, fmt(3 3 3 3 3 3)) using ///
     "$output/Table_09.${tab_fmt}", ///
     replace unstack align(center) nomtitles se ///
 	title("Table 9: Effect of the Department of Excellence Programme on University Faculty Recruitment for second tier university departments: Synthetic Diff-in-Diff estimator") ///
-    addnotes("Notes: this table displays results from the synthetic difference-in-difference estimator (Arkhangelsky et al., 2021), based on 2,023 department-year observations using 2014-2020 data. Estimates include controls for the number of employees at t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Standard errors are based on 1000 bootstrap replications.")
+    addnotes("Notes: this table displays results from the synthetic difference-in-difference estimator (Arkhangelsky et al., 2021), based on 2,023 department-year observations using 2014-2020 data. Estimates include controls for the number of employees at t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Standard errors are based on 500 bootstrap replications.")
 
 drop treat_from2018

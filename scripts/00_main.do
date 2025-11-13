@@ -14,7 +14,7 @@ clear all
 *=============================================================================*
 
 // Download raw data (0 for no; 1 for yes)
-global downloads 1
+global downloads 0
 
 // Run main analysis script (0 for no; 1 for yes)
 global analysis 1
@@ -39,7 +39,7 @@ adopath + "stata_packages"
 net set ado "stata_packages"
 
 
-// Download packages 
+// Download and install packages if needed
 local packages  blindschemes /// plot scheme 
 	reghdfe ftools /// high dimensional fixed effects regressions
 	estout /// table exporting tool
@@ -49,15 +49,27 @@ local packages  blindschemes /// plot scheme
 	
 if $downloads == 1 {
 	foreach name of local packages  {
-		ssc install `name',replace 	// Install  Packages
-		
-
+		cap which `name'
+		if _rc==111 {
+			ssc install `name'
+		}
+		else {
+			dis in red "`name' package already installed"
+		}
 	}
-
-	net install sdid, /// synthetic DID
+	
+	*synthetic DID
+	cap which sdid
+	if _rc net install sdid, /// 
 		from("https://raw.githubusercontent.com/daniel-pailanir/sdid/master") replace
-	net install http://www.stata.com/users/vwiggins/grc1leg.pkg // combine graphs
+	
+	*combine graphs with single label
+	cap which grc1leg
+	if _rc net install "http://www.stata.com/users/vwiggins/grc1leg.pkg", replace
 
+} 
+else {
+		dis in red "download not selected"
 }
 
 

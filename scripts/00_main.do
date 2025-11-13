@@ -45,7 +45,6 @@ local packages  blindschemes /// plot scheme
 	estout /// table exporting tool
 	distinct /// num unique observations
 	coefplot /// plots of coefficients
-	codebookout /// exports variable codebook
 	htmlcb //exports variable codebook
 	
 if $downloads == 1 {

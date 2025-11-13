@@ -22,7 +22,7 @@ global covar lagi dep_transfer_horizontal tot_premiale VA_percap unemp_rate
 
 global y new_position new_entry new_endogamia new_rtda new_rtdb new_ten_uni_all	
 
-global reps 500 // number of bootstrap replications
+global reps 2 // number of bootstrap replications
 
 
 
@@ -178,8 +178,10 @@ matrix rownames A = "ATT" "Std Err" "p-value" "N(Departments)"
 * --------------------------------------------------
 * Export summary table
 * --------------------------------------------------
-esttab matrix(A, fmt(3 3 3)) using ///
+esttab matrix(A, fmt(3 3 3 3 3 3)) using ///
     "$output/Table_09.${tab_fmt}", ///
     replace unstack align(center) nomtitles se ///
 	title("Table 9: Effect of the Department of Excellence Programme on University Faculty Recruitment for second tier university departments: Synthetic Diff-in-Diff estimator") ///
     addnotes("Notes: this table displays results from the synthetic difference-in-difference estimator (Arkhangelsky et al., 2021), based on 2,023 department-year observations using 2014-2020 data. Estimates include controls for the number of employees at t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Standard errors are based on 1000 bootstrap replications.")
+
+drop treat_from2018

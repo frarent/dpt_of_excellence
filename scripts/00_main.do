@@ -171,7 +171,7 @@ log close
 
 // Housekeeping (clean all temporary files)
 *==========================================================================*
-local temp: dir ${temp_path} files "*"
+local temp: dir ${temp_path} files "*.gph"
 dis `temp'
 
 foreach file of local temp {

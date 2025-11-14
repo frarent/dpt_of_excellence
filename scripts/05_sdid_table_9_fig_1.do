@@ -150,6 +150,7 @@ foreach var of global y {
 
     * Compute DDD contrast
     local att_ddd = (`att_low' - `att_high')
+	local se_ddd  = sqrt(`se_low'^2 + `se_high'^2)
     local z_ddd   = `att_ddd'/`se_ddd'
     local p_ddd   = 2*(1 - normal(abs(`z_ddd')))
 

@@ -57,10 +57,9 @@ preserve
 
 	* Estimate SDID and generate graphs
 	foreach var of global y {
-		set seed 150749
 		sdid `var' id year treat_from2018, ///
 			vce(bootstrap) covariates($covar) ///
-			reps(${reps}) seed(123) ///
+			reps(${reps}) seed(150749) ///
 			graph
 
 		matrix A = e(series)
@@ -134,25 +133,24 @@ matrix A = J(3, 9, .)
 * Sdid estimates
 local i 0
 foreach var of global y {
-    local ++i
-	set seed 150749
+    local ++i 
     * ATT for LOW = 1
     sdid `var' id year treat_from2018 if LOWdep == 1, ///
         vce(bootstrap) covariates($covar) ///
-        reps(${reps}) seed(123)
+        reps(${reps}) seed(150749)
     local att_low = e(ATT)
     local se_low  = e(se)
 
     * ATT for LOW = 0
     sdid `var' id year treat_from2018 if LOWdep == 0, ///
         vce(bootstrap) covariates($covar) ///
-        reps(${reps}) seed(123)
+        reps(${reps}) seed(150749)
     local att_high = e(ATT)
     local se_high  = e(se)
 
     * Compute DDD contrast
     local att_ddd = (`att_low' - `att_high')
-1    local z_ddd   = `att_ddd'/`se_ddd'
+    local z_ddd   = `att_ddd'/`se_ddd'
     local p_ddd   = 2*(1 - normal(abs(`z_ddd')))
 
     matrix A[1,`i'] = `att_ddd'

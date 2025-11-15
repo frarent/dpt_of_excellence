@@ -5,7 +5,6 @@
 * Last Update: 12/11/2025
 *=============================================================================*
 
-
 // Clear Memory
 *=============================================================================*
 clear all
@@ -25,7 +24,10 @@ global robcheck 1
 // Run rob check script long (0 for no; 1 for yes)
 global robcheck_long 1
 
-
+// Start Timer
+*=============================================================================*
+timer clear
+timer on 1
 
 // Use included packages
 *=============================================================================*
@@ -178,3 +180,27 @@ foreach file of local temp {
 	erase "${temp_path}/`file'"
 }
 
+
+// Stop timer and calculate time elapsed
+*==========================================================================*
+timer off 1
+timer list 1
+
+* Total elapsed time in seconds
+scalar elapsed_sec = r(t1)
+display "Elapsed time (sec): " elapsed_sec
+
+* Decompose into days, hours, minutes
+scalar days  = floor(elapsed_sec / (24*60*60))
+scalar rem   = mod(elapsed_sec, 24*60*60)
+
+scalar hours = floor(rem / 3600)
+scalar rem2  = mod(rem, 3600)
+
+scalar minutes = floor(rem2 / 60)
+
+* Nicely formatted output
+display "Elapsed time: " ///
+    %9.0f days  " days "   ///
+    %02.0f hours " hours " ///
+    %02.0f minutes " minutes"

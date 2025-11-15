@@ -63,7 +63,7 @@ This will set up the environment and execute all other scripts to reproduce the 
 #### Computational Requirements and Dependencies
 
 - There is no need to download the user-written packages, as they are already included in `stata_packages`. Running `scripts/00_main.do` is sufficient to generate the estimates. Since several of these user-written packages have been developed recently, it is advisable to check for updates by changing `global downloads 0` to `global downloads 1` in `scripts/00_main.do`. This will automatically update all packages.
-- The package was run on two different instances: 1) Stata MP version 19.5, Windows 11 Enterprise 64-bit, PC (64-bit x86-64) with 8 processors, AMD EPYC 7502 32-Core Processor (2.50 GHz), RAM 32 GB and completed in 6 hours and 16 minutes; 2) XXX. No specific hardware or software requirements are needed, although older versions of Stata and less powerful PCs may encounter issues when running the full code.
+- The package was run on two different instances: 1) Stata MP version 19.5, Windows 11 Enterprise 64-bit, PC (64-bit x86-64) with 8 processors, AMD EPYC 7502 32-Core Processor (2.50 GHz), RAM 32 GB and completed in 6 hours and 16 minutes; 2) Stata SE version 19.5, Windows 11 Pro, PC (x64) with 12th Gen Intel(R) Core(TM) i7-1270P processor (2.20 GHz), RAM 32 GB, and completed in 1 hour and 37 minutes. No specific hardware or software requirements are needed, although older versions of Stata and less powerful PCs may encounter issues when running the full code.
 
 ### Directory Structure
 
@@ -86,8 +86,7 @@ Francesco Rentocchini is an employee of the European Commission. The views expre
 
 **Joint responsibility**. All of the authors take full joint responsibility for any omissions or errors in this replication repository.
 
-The `00_main.do` file builds on that provided by [Pietro Santoleri](https://pietrosantoleri.github.io/). We are indebted to Pietro for sharing the initial version with us. We have made some modifications to suit our needs and, where possible, to improve upon the already strong starting point. 
-Pietro - [Cotton](https://immich.ds218fr.synology.me/share/6AXByUvjCpv8mqCrCYYL1nXeVyUFeO-drISeWsGs69R6zpqUMhN9ZlwUb4K0Z2XG_wg) misses you very much. All errors and omissions are our own.
+The `00_main.do` file builds on that provided by [Pietro Santoleri](https://pietrosantoleri.github.io/). We are indebted to Pietro for sharing the initial version with us. We have made some modifications to suit our needs and, where possible, to improve upon the already strong starting point. All errors and omissions are our own.
 
 ## License
 ![CC-BY-NC](data/raw_data/cc-by-nc.png) The repository is under a CC-BY-NC license. Usage by commercial entities is allowed, but reselling it is not.

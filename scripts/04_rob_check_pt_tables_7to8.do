@@ -62,7 +62,7 @@ foreach var of global y {
 * --------------------------------------------------
 * Export: Table 7 (DD conditional PT)
 * --------------------------------------------------
-
+count if e(sample)
 esttab $y1 $y2 using "${output}/Table_07.${tab_fmt}", ///
     keep(1.treated#*) starlevels(+ 0.1 * 0.05 ** 0.01) ///
     varlabels( ///
@@ -89,7 +89,7 @@ esttab $y1 $y2 using "${output}/Table_07.${tab_fmt}", ///
         "Joint p-value" ///
         "N (Departments X year)" "N (Departments)") ///
         fmt(0 0 0 0 3 0 0)) ///
-    addnotes("Notes. This table displays the pre-treatment event study coefficients using 2014-2016 data. Regressions are based on 1,104 department-year observations. Estimates include controls for the number of employees at t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Department, year and university-by-year fixed effects are included in all specifications. All regressions are estimated using 1/(1-`phat'(x<sub>i</sub>)) to weight untreated observations and 1/`phat'(x<sub>i</sub>) otherwise. `phat'(x<sub>i</sub>)  is the propensity score and is calculated controlling for the number of department research staff at time t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added, provincial unemployment rate and NUTS 1 regional fixed effects. Standard errors clustered at the department level are in parentheses.") ///
+    addnotes("Notes. This table displays the pre-treatment event study coefficients using 2014-2016 data. Regressions are based on `r(N)' department-year observations. Estimates include controls for the number of employees at t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Department, year and university-by-year fixed effects are included in all specifications. All regressions are estimated using 1/(1-`phat'(x<sub>i</sub>)) to weight untreated observations and 1/`phat'(x<sub>i</sub>) otherwise. `phat'(x<sub>i</sub>)  is the propensity score and is calculated controlling for the number of department research staff at time t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added, provincial unemployment rate and NUTS 1 regional fixed effects. Standard errors clustered at the department level are in parentheses.") ///
     nogaps onecell noomitted ///
     mtitles("New positions" "New positions (excl. promotions)" ///
     "Internal promotions" "Temporary" "Tenure track" "Tenured") ///
@@ -125,7 +125,7 @@ foreach var of global y {
 * --------------------------------------------------
 * Export: Table 8 (DD unconditional PT)
 * --------------------------------------------------
-
+count if e(sample)
 esttab est3_* using "${output}/Table_08.${tab_fmt}", ///
     keep(1.treated#*) starlevels(+ 0.1 * 0.05 ** 0.01) ///
     varlabels( ///
@@ -151,7 +151,7 @@ esttab est3_* using "${output}/Table_08.${tab_fmt}", ///
         "Prop score weight" "Joint p-value" ///
         "N (Departments X year)" "N (Departments)") ///
         fmt(0 0 0 0 3 0 0)) ///
-    addnotes("Notes. This table displays the pre-treatment event study coefficients using 2014-2016 data. Regressions are based on 1,160 department-year observations. Department and year fixed effects are included in all specifications. All regressions are estimated using 1/(1-`phat'(x<sub>i</sub>)) to weight untreated observations and 1/`phat'(x<sub>i</sub>) otherwise. `phat'(x<sub>i</sub>) is the propensity score and is calculated controlling for the number of department research staff at time t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added, provincial unemployment rate and NUTS 1 regional fixed effects. Standard errors clustered at the department level are in parentheses. ") ///
+    addnotes("Notes. This table displays the pre-treatment event study coefficients using 2014-2016 data. Regressions are based on `r(N)' department-year observations. Department and year fixed effects are included in all specifications. All regressions are estimated using 1/(1-`phat'(x<sub>i</sub>)) to weight untreated observations and 1/`phat'(x<sub>i</sub>) otherwise. `phat'(x<sub>i</sub>) is the propensity score and is calculated controlling for the number of department research staff at time t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added, provincial unemployment rate and NUTS 1 regional fixed effects. Standard errors clustered at the department level are in parentheses. ") ///
     nogaps onecell noomitted ///
     mtitles("New positions" "New positions (excl. promotions)" ///
     "Internal promotions" "Temporary" "Tenure track" "Tenured") ///

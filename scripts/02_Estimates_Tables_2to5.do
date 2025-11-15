@@ -86,7 +86,7 @@ foreach var of global y {
 * --------------------------------------------------
 * Table 2 - DD on Faculty Recruitment
 * --------------------------------------------------
-
+count if e(sample)
 esttab $y1 using "${output}/Table_02.${tab_fmt}", ///
     keep(1.treated#* lagi dep_transfer_horizontal tot_premiale ///
          VA_percap unemp_rate) ///
@@ -107,7 +107,7 @@ esttab $y1 using "${output}/Table_02.${tab_fmt}", ///
                "University-by-post FE" ///
                "Prop score weight" ///
                "N (Departments)") fmt(0 0 0 0 0)) ///
-    addnotes("Notes. This table displays the average treatment on the treated coefficient using 2014-2020 data. Regressions are based on 2,029 department-year observations. Estimates include controls for the number of employees at t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Department, post treatement fixed effects are included in all specifications. Columns 2, 3, 5, 6, 8 and 9 also include university-by-post fixed effects. Regressions in columns 3, 6 and 9 are estimated using 1/(1-`phat'(x<sub>i</sub>)) to weight untreated observations and 1/`phat'(x<sub>i</sub>) otherwise. `phat'(x<sub>i</sub>) is the propensity score and is calculated controlling for the number of department research staff at time t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added, provincial unemployment rate and NUTS 1 regional fixed effects. Standard errors clustered at the department level are in parentheses. ") ///
+    addnotes("Notes. This table displays the average treatment on the treated coefficient using 2014-2020 data. Regressions are based on `r(N)' department-year observations. Estimates include controls for the number of employees at t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Department, post treatement fixed effects are included in all specifications. Columns 2, 3, 5, 6, 8 and 9 also include university-by-post fixed effects. Regressions in columns 3, 6 and 9 are estimated using 1/(1-`phat'(x<sub>i</sub>)) to weight untreated observations and 1/`phat'(x<sub>i</sub>) otherwise. `phat'(x<sub>i</sub>) is the propensity score and is calculated controlling for the number of department research staff at time t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added, provincial unemployment rate and NUTS 1 regional fixed effects. Standard errors clustered at the department level are in parentheses. ") ///
     nogaps onecell ///
     mtitle("New positions" ///
 		"New positions" ///
@@ -124,6 +124,7 @@ esttab $y1 using "${output}/Table_02.${tab_fmt}", ///
 * --------------------------------------------------
 * Table 3 - DD on Temporary & Tenure-Track
 * --------------------------------------------------
+count if e(sample)
 
 esttab $y2 using "${output}/Table_03.${tab_fmt}", ///
     keep(1.treated#* lagi dep_transfer_horizontal tot_premiale ///
@@ -145,7 +146,7 @@ esttab $y2 using "${output}/Table_03.${tab_fmt}", ///
                "University-by-post FE" ///
                "Prop score weight" ///
                "N (Departments)") fmt(0 0 0 0 0)) ///
-    addnotes("Notes. This table displays the average treatment on the treated coefficients using 2014-2020 data. Regressions are based on 2,029 department-year observations. Estimates include controls for the number of employees at t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Department, post treatment fixed effects are included in all specifications. Columns 2, 3, 5, 6, 8 and 9 also include university-by-post fixed effects. Regressions in columns 3, 6 and 9 are estimated using 1/(1-`phat'(x<sub>i</sub>)) to weight untreated observations and 1/`phat'(x<sub>i</sub>) otherwise. `phat'(x<sub>i</sub>) is the propensity score and is calculated controlling for the number of department research staff at time t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added, provincial unemployment rate and NUTS 1 regional fixed effects. Standard errors clustered at the department level are in parentheses") ///
+    addnotes("Notes. This table displays the average treatment on the treated coefficients using 2014-2020 data. Regressions are based on `r(N)' department-year observations. Estimates include controls for the number of employees at t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Department, post treatment fixed effects are included in all specifications. Columns 2, 3, 5, 6, 8 and 9 also include university-by-post fixed effects. Regressions in columns 3, 6 and 9 are estimated using 1/(1-`phat'(x<sub>i</sub>)) to weight untreated observations and 1/`phat'(x<sub>i</sub>) otherwise. `phat'(x<sub>i</sub>) is the propensity score and is calculated controlling for the number of department research staff at time t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added, provincial unemployment rate and NUTS 1 regional fixed effects. Standard errors clustered at the department level are in parentheses") ///
     nogaps onecell ///
     mtitle("Temporary" ///
 		"Temporary" ///
@@ -206,6 +207,8 @@ foreach var of global y {
 * --------------------------------------------------
 * Table 4: DDD — Faculty Recruitment
 * --------------------------------------------------
+count if e(sample)
+
  esttab $y1 using "${output}/Table_04.${tab_fmt}", ///
     keep(1.treated#1.L*#*post2 lagi dep_transfer_horizontal ///
          tot_premiale VA_percap unemp_rate) ///
@@ -226,7 +229,7 @@ foreach var of global y {
                "University-by-post FE" ///
                "Prop score weight" ///
                "N (Departments)") fmt(0 0 0 0 0)) ///
-    addnotes("Notes. This table displays the average treatment on the treated coefficients for second tier departments using 2014-2020 data. Regressions are based on 2,029 department-year observations. Estimates include controls for the number of employees at t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Department, post treatment fixed effects are included in all specifications. Columns 2, 3, 5, 6, 8 and 9 also include university-by-post fixed effects. Regressions in columns 3, 6 and 9 are estimated using 1/(1-`phat'(x<sub>i</sub>)) to weight untreated observations and 1/`phat'(x<sub>i</sub>) otherwise. `phat'(x<sub>i</sub>) is the propensity score and is calculated controlling for the number of department research staff at time t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added, provincial unemployment rate and NUTS 1 regional fixed effects. Standard errors clustered at the department level are in parentheses. ") ///
+    addnotes("Notes. This table displays the average treatment on the treated coefficients for second tier departments using 2014-2020 data. Regressions are based on `r(N)' department-year observations. Estimates include controls for the number of employees at t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Department, post treatment fixed effects are included in all specifications. Columns 2, 3, 5, 6, 8 and 9 also include university-by-post fixed effects. Regressions in columns 3, 6 and 9 are estimated using 1/(1-`phat'(x<sub>i</sub>)) to weight untreated observations and 1/`phat'(x<sub>i</sub>) otherwise. `phat'(x<sub>i</sub>) is the propensity score and is calculated controlling for the number of department research staff at time t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added, provincial unemployment rate and NUTS 1 regional fixed effects. Standard errors clustered at the department level are in parentheses. ") ///
     nogaps onecell ///
     mtitle("New positions" ///
 		"New positions" ///
@@ -243,6 +246,8 @@ foreach var of global y {
 * --------------------------------------------------
 * Table 5 - DDD Temporary & Tenure-Track
 * --------------------------------------------------
+count if e(sample)
+
  esttab $y2 using "${output}/Table_05.${tab_fmt}", ///
     keep(1.treated#1.L*#*post2 lagi dep_transfer_horizontal ///
          tot_premiale VA_percap unemp_rate) ///
@@ -263,7 +268,7 @@ foreach var of global y {
                "University-by-post FE" ///
                "Prop score weight" ///
                "N (Departments)") fmt(0 0 0 0 0)) ///
-    addnotes("Notes. This table displays the average treatment on the treated coefficients for second tier departments using 2014-2020 data. Regressions are based on 2,029 department-year observations. Estimates include controls for the number of employees at t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Department, post treatment fixed effects are included in all specifications. Columns 2, 3, 5, 6, 8 and 9 also include university-by-post fixed effects. Regressions in columns 3, 6 and 9 are estimated using 1/(1-`phat'(x<sub>i</sub>)) to weight untreated observations and 1/`phat'(x<sub>i</sub>) otherwise. `phat'(x<sub>i</sub>) is the propensity score and is calculated controlling for the number of department research staff at time t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added, provincial unemployment rate and NUTS 1 regional fixed effects. Standard errors clustered at the department level are in parentheses") ///
+    addnotes("Notes. This table displays the average treatment on the treated coefficients for second tier departments using 2014-2020 data. Regressions are based on `r(N)' department-year observations. Estimates include controls for the number of employees at t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added and provincial unemployment rate. Department, post treatment fixed effects are included in all specifications. Columns 2, 3, 5, 6, 8 and 9 also include university-by-post fixed effects. Regressions in columns 3, 6 and 9 are estimated using 1/(1-`phat'(x<sub>i</sub>)) to weight untreated observations and 1/`phat'(x<sub>i</sub>) otherwise. `phat'(x<sub>i</sub>) is the propensity score and is calculated controlling for the number of department research staff at time t-1, the number of staff transferred between departments, university income linked to the VQR, province-level per-capita value added, provincial unemployment rate and NUTS 1 regional fixed effects. Standard errors clustered at the department level are in parentheses") ///
     nogaps onecell ///
     mtitle("Temporary" ///
 		"Temporary" ///

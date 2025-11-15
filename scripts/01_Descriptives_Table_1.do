@@ -39,13 +39,6 @@ qui reghdfe new_position ib0.treated##i.post2 $covar [pweight=w_ipw_pre], ///
     absorb(id i.uni_name_enc#i.post2) vce(cluster id)
 keep if e(sample)
 
-* --------------------------------------------------
-* Transformations: Scale research funding to millions.
-* --------------------------------------------------
-
-* Scale research funding to millions
-capture confirm variable tot_premiale
-if !_rc replace tot_premiale = tot_premiale/1000000
 
 * --------------------------------------------------
 * Variable Order: Locals for dependent vars and controls.

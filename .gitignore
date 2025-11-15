@@ -7,3 +7,7 @@ data_for_analysis
 /Manuscript.docx
 /data/raw_data/data2estimate.dta
 /scripts/RCXX_yFE.do
+/scripts/RC01_rob_check_bad_tables_A1&A2.do
+/scripts/RC02_poisFE.do
+/scripts/RC03_restricted_sample.do
+/scripts/RC04_thresholds.do

@@ -7,6 +7,14 @@ Please cite the above paper when using any of these programs.
 
 Authors: [Ugo Rizzo](https://docente.unife.it/docenti-en/ugo.rizzo?set_language=en), [Francesco Rentocchini](https://frarent.github.io/), [Marco Seeber](https://www.uia.no/english/about-uia/employees/marcos/index.html), [Laura Ramaciotti](https://docente.unife.it/docenti-en/laura.ramaciotti?set_language=en)
 
+## Replication Instructions
+
+1. **Download/clone/unzip** this repository/file.
+2. **Open the Stata Project file** `dpt_of_excellence.stpr`. This will allow you to view all scripts in the Project Manager.
+3. **Run the main script** from Stata: `00_main.do`
+
+This will set up the environment and execute all other scripts to reproduce the complete set of tables and figures.
+
 ## Data 
 
 ### Data availability  
@@ -51,14 +59,6 @@ The table below describes all `.do` files included in this repository, in the or
 | `04_rob_check_pt_tables_7to8.do` | analysis - robustness | Runs robustness checks (conditional and unconditional parallel trend). | **Tables 7–8** (Robustness PT) |
 | `05_sdid_table_9_fig_1.do` | analysis - synthetic DID | Implements synthetic DiD; exports a figure and a final table. | **Table 9**; **Figure 1** |
 
-
-### Replication Instructions
-
-1. **Download/clone/unzip** this repository/file.
-2. **Open the Stata Project file** `dpt_of_excellence.stpr`. This will allow you to view all scripts in the Project Manager.
-3. **Run the main script** from Stata: `00_main.do`
-
-This will set up the environment and execute all other scripts to reproduce the complete set of tables and figures.
 
 #### Computational Requirements and Dependencies
 

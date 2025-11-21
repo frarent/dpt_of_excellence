@@ -1,4 +1,4 @@
-# Beyond the Badge of Honour: The Effect of the Italian (Department of) Excellence Initiative on Staff Recruitment
+# Beyond the Badge of Honour: The Effect of the Academic Excellence Initiative on Staff Recruitment in Italy
 Replication package for the analysis in the paper:
 
 > Rizzo, U., Rentocchini, F., Seeber, M. and Ramaciotti, L. (2025), Beyond the Badge of Honour: The Effect of the Italian (Department of) Excellence Initiative on Staff Recruitment, _Oxford Economic Papers_, forthcoming

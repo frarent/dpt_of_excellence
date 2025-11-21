@@ -82,7 +82,7 @@ The full variable codebook with variable name, label, storage type and their cor
 ## Acknowledgments
 **Joint responsibility**. All of the authors take full joint responsibility for any omissions or errors in this replication repository.
 
-The `00_main.do` file builds on that provided by [Pietro Santoleri](https://pietrosantoleri.github.io/). We are indebted to Pietro for sharing the initial version with us. We have made some modifications to suit our needs and, where possible, to improve upon the already strong starting point. All errors and omissions are our own. Pietro - [Cotton](https://www.dropbox.com/scl/fi/k5l2a6ah6hl67cmaup0jv/PXL_20251030_090121195.jpg?rlkey=pb1pkddf09uinqffy260wxv1c&st=bl8sg6sx&dl=0) misses you very much.
+The `00_main.do` file builds on that provided by [Pietro Santoleri](https://pietrosantoleri.github.io/). We are indebted to Pietro for sharing the initial version with us. We have made some modifications to suit our needs and, where possible, to improve upon the already strong starting point. All errors and omissions are our own. 
 
 ## License
 ![CC-BY-NC](data/raw_data/cc-by-nc.png) The repository is under a CC-BY-NC license. Usage by commercial entities is allowed, but reselling it is not.
